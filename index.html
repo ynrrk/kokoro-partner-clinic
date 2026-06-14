@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>こころパートナークリニック｜責任ある立場の方のための心身メンテナンス</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ===========================
+       TOKENS
+    =========================== */
+    :root {
+      --c-bg:        #F7F5F0;
+      --c-bg-dark:   #EEECE6;
+      --c-sage:      #D4DEDA;
+      --c-deep:      #3E4E47;
+      --c-mid:       #6B7D74;
+      --c-text:      #2C2C2C;
+      --c-muted:     #7A7A72;
+      --c-gold:      #B8A882;
+      --c-gold-lt:   #D9CEBC;
+      --c-white:     #FDFCF9;
+      --c-line:      rgba(62,78,71,0.15);
+
+      --f-serif:     'Noto Serif JP', 'Yu Mincho', '游明朝', serif;
+      --f-display:   'Cormorant Garamond', 'Noto Serif JP', serif;
+      --f-sans:      'Noto Sans JP', 'Yu Gothic UI', sans-serif;
+
+      --sp-xs:  0.5rem;
+      --sp-sm:  1rem;
+      --sp-md:  2rem;
+      --sp-lg:  4rem;
+      --sp-xl:  7rem;
+
+      --max-w: 760px;
+      --max-w-wide: 1080px;
+    }
+
+    /* ===========================
+       RESET & BASE
+    =========================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--c-bg);
+      color: var(--c-text);
+      font-family: var(--f-sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===========================
+       UTILITIES
+    =========================== */
+    .u-center { text-align: center; }
+    .u-serif  { font-family: var(--f-serif); }
+    .u-muted  { color: var(--c-muted); }
+    .u-gold   { color: var(--c-gold); }
+
+    .section-label {
+      display: block;
+      font-family: var(--f-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--c-gold);
+      margin-bottom: var(--sp-md);
+    }
+
+    .divider {
+      width: 32px;
+      height: 1px;
+      background: var(--c-gold);
+      margin: var(--sp-md) 0;
+    }
+
+    .divider--center { margin-left: auto; margin-right: auto; }
+
+    /* ===========================
+       NAV
+    =========================== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem var(--sp-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(247,245,240,0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--c-line);
+    }
+
+    .nav__logo {
+      font-family: var(--f-serif);
+      font-weight: 400;
+      font-size: 0.88rem;
+      letter-spacing: 0.1em;
+      color: var(--c-deep);
+    }
+
+    .nav__cta {
+      font-family: var(--f-sans);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      padding: 0.55rem 1.2rem;
+      border: 1px solid var(--c-deep);
+      color: var(--c-deep);
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .nav__cta:hover {
+      background: var(--c-deep);
+      color: var(--c-white);
+    }
+
+    /* ===========================
+       HERO
+    =========================== */
+    .hero {
+      padding-top: 80px;
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .hero__text {
+      padding: var(--sp-xl) var(--sp-md) var(--sp-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero__text {
+        padding: var(--sp-xl) var(--sp-lg) var(--sp-lg) clamp(2rem, 6vw, 6rem);
+      }
+    }
+
+    .hero__eyebrow {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 0.82rem;
+      letter-spacing: 0.2em;
+      color: var(--c-gold);
+      margin-bottom: var(--sp-md);
+    }
+
+    .hero__headline {
+      font-family: var(--f-serif);
+      font-weight: 400;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      line-height: 1.75;
+      letter-spacing: 0.04em;
+      color: var(--c-deep);
+      margin-bottom: var(--sp-md);
+    }
+
+    .hero__headline span {
+      display: block;
+    }
+
+    .hero__sub {
+      font-size: 0.88rem;
+      line-height: 2;
+      color: var(--c-muted);
+      max-width: 480px;
+      margin-bottom: var(--sp-lg);
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .hero__image {
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
+      background: var(--c-sage);
+    }
+
+    @media (min-width: 768px) {
+      .hero__image {
+        min-height: unset;
+      }
+    }
+
+    .hero__image img,
+    .hero__image .img-placeholder {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .img-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--c-sage);
+      color: var(--c-mid);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      font-family: var(--f-display);
+    }
+
+    /* ===========================
+       BUTTONS
+    =========================== */
+    .btn {
+      display: inline-block;
+      font-family: var(--f-sans);
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      padding: 0.9rem 2rem;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+      white-space: nowrap;
+    }
+
+    .btn--primary {
+      background: var(--c-deep);
+      color: var(--c-white);
+      border: 1px solid var(--c-deep);
+    }
+
+    .btn--primary:hover {
+      background: var(--c-text);
+      border-color: var(--c-text);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--c-deep);
+      border: 1px solid var(--c-deep);
+    }
+
+    .btn--outline:hover {
+      background: var(--c-deep);
+      color: var(--c-white);
+    }
+
+    /* ===========================
+       GENERIC SECTION WRAPPER
+    =========================== */
+    .section {
+      padding: var(--sp-xl) var(--sp-md);
+    }
+
+    .section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .section__inner--wide {
+      max-width: var(--max-w-wide);
+      margin: 0 auto;
+    }
+
+    .section__heading {
+      font-family: var(--f-serif);
+      font-weight: 400;
+      font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+      line-height: 1.75;
+      letter-spacing: 0.06em;
+      color: var(--c-deep);
+      margin-bottom: var(--sp-md);
+    }
+
+    /* ===========================
+       FOR WHOM
+    =========================== */
+    .for-whom {
+      background: var(--c-bg-dark);
+    }
+
+    .checklist {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+    }
+
+    @media (min-width: 600px) {
+      .checklist {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--c-deep);
+    }
+
+    .checklist li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 18px;
+      height: 1px;
+      background: var(--c-gold);
+      margin-top: 0.75em;
+    }
+
+    /* ===========================
+       CONCEPT
+    =========================== */
+    .concept__lead {
+      font-family: var(--f-serif);
+      font-weight: 400;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 2.1;
+      color: var(--c-deep);
+      margin-bottom: var(--sp-md);
+    }
+
+    .concept__body {
+      font-size: 0.9rem;
+      color: var(--c-muted);
+      line-height: 2;
+    }
+
+    /* ===========================
+       5 PERSPECTIVES
+    =========================== */
+    .perspectives {
+      background: var(--c-white);
+    }
+
+    .perspectives-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2px;
+      margin-top: var(--sp-lg);
+      border: 1px solid var(--c-line);
+    }
+
+    @media (min-width: 600px) {
+      .perspectives-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .perspective-card {
+      padding: var(--sp-md) 1.5rem var(--sp-md);
+      border-bottom: 1px solid var(--c-line);
+      position: relative;
+    }
+
+    @media (min-width: 600px) {
+      .perspective-card:nth-child(odd) {
+        border-right: 1px solid var(--c-line);
+      }
+    }
+
+    /* 5th card: full width on 2-col */
+    @media (min-width: 600px) {
+      .perspective-card:last-child {
+        grid-column: 1 / -1;
+        border-right: none;
+      }
+    }
+
+    .perspective-card:last-child {
+      border-bottom: none;
+    }
+
+    .perspective-num {
+      font-family: var(--f-display);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--c-gold-lt);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    .perspective-title {
+      font-family: var(--f-serif);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--c-deep);
+      margin-bottom: 0.5rem;
+    }
+
+    .perspective-body {
+      font-size: 0.82rem;
+      color: var(--c-muted);
+      line-height: 1.85;
+    }
+
+    /* ===========================
+       ACCELERATOR STATE
+    =========================== */
+    .accel {
+      background: var(--c-deep);
+      color: var(--c-white);
+    }
+
+    .accel .section-label {
+      color: var(--c-gold);
+    }
+
+    .accel__quote {
+      font-family: var(--f-serif);
+      font-weight: 400;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      line-height: 2;
+      letter-spacing: 0.04em;
+      margin-bottom: var(--sp-md);
+      color: var(--c-sage);
+    }
+
+    .accel__body {
+      font-size: 0.88rem;
+      line-height: 2;
+      color: rgba(212,222,218,0.75);
+      max-width: 580px;
+    }
+
+    /* ===========================
+       VALUE
+    =========================== */
+    .value-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-md);
+      margin-top: var(--sp-lg);
+    }
+
+    .value-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding-bottom: var(--sp-md);
+      border-bottom: 1px solid var(--c-line);
+    }
+
+    .value-item:last-child { border-bottom: none; }
+
+    .value-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--c-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.15rem;
+    }
+
+    .value-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--c-gold);
+      fill: none;
+      stroke-width: 1.2;
+    }
+
+    .value-title {
+      font-family: var(--f-serif);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--c-deep);
+      margin-bottom: 0.3rem;
+    }
+
+    .value-body {
+      font-size: 0.85rem;
+      color: var(--c-muted);
+      line-height: 1.9;
+    }
+
+    /* ===========================
+       DIFFERENCE (vs coaching)
+    =========================== */
+    .diff {
+      background: var(--c-bg-dark);
+    }
+
+    .diff-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: var(--sp-lg);
+      font-size: 0.85rem;
+    }
+
+    .diff-table th {
+      font-family: var(--f-serif);
+      font-weight: 400;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      color: var(--c-muted);
+      text-align: left;
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid var(--c-line);
+      background: var(--c-bg);
+    }
+
+    .diff-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--c-line);
+      line-height: 1.7;
+      vertical-align: top;
+    }
+
+    .diff-table tr:last-child td { border-bottom: none; }
+
+    .diff-table td:first-child {
+      font-family: var(--f-serif);
+      font-weight: 400;
+      color: var(--c-deep);
+      white-space: nowrap;
+    }
+
+    .diff-table td.highlight {
+      color: var(--c-deep);
+      font-weight: 400;
+    }
+
+    .diff-table td.other {
+      color: var(--c-muted);
+    }
+
+    /* ===========================
+       FLOW
+    =========================== */
+    .flow-steps {
+      list-style: none;
+      margin-top: var(--sp-lg);
+      position: relative;
+    }
+
+    .flow-steps::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--c-gold-lt);
+    }
+
+    .flow-step {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding-bottom: var(--sp-md);
+      position: relative;
+    }
+
+    .flow-step:last-child { padding-bottom: 0; }
+
+    .flow-step__num {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--c-white);
+      border: 1px solid var(--c-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--f-display);
+      font-size: 0.9rem;
+      color: var(--c-gold);
+      position: relative;
+      z-index: 1;
+    }
+
+    .flow-step__title {
+      font-family: var(--f-serif);
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--c-deep);
+      margin-bottom: 0.25rem;
+      padding-top: 0.55rem;
+    }
+
+    .flow-step__body {
+      font-size: 0.82rem;
+      color: var(--c-muted);
+      line-height: 1.85;
+    }
+
+    /* ===========================
+       PRICING
+    =========================== */
+    .pricing {
+      background: var(--c-white);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: var(--sp-lg);
+    }
+
+    @media (min-width: 600px) {
+      .pricing-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .pricing-card {
+      border: 1px solid var(--c-line);
+      padding: var(--sp-md) 1.5rem;
+      position: relative;
+      background: var(--c-bg);
+    }
+
+    .pricing-card__badge {
+      position: absolute;
+      top: -1px; right: 1.5rem;
+      background: var(--c-gold);
+      color: var(--c-white);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.7rem;
+      font-family: var(--f-sans);
+    }
+
+    .pricing-card__type {
+      font-family: var(--f-serif);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--c-deep);
+      margin-bottom: 0.2rem;
+    }
+
+    .pricing-card__duration {
+      font-size: 0.75rem;
+      color: var(--c-muted);
+      margin-bottom: var(--sp-md);
+    }
+
+    .pricing-card__price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .price-main {
+      font-family: var(--f-display);
+      font-size: 1.9rem;
+      font-weight: 300;
+      color: var(--c-deep);
+      letter-spacing: 0.02em;
+    }
+
+    .price-unit {
+      font-size: 0.75rem;
+      color: var(--c-muted);
+    }
+
+    .price-original {
+      font-size: 0.78rem;
+      color: var(--c-muted);
+      text-decoration: line-through;
+      margin-bottom: var(--sp-md);
+    }
+
+    .pricing-card__includes {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      padding-top: var(--sp-sm);
+      border-top: 1px solid var(--c-line);
+    }
+
+    .pricing-card__includes li {
+      font-size: 0.8rem;
+      color: var(--c-muted);
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .pricing-card__includes li::before {
+      content: '—';
+      color: var(--c-gold);
+    }
+
+    .pricing-note {
+      margin-top: var(--sp-md);
+      font-size: 0.78rem;
+      color: var(--c-muted);
+      line-height: 1.8;
+    }
+
+    /* ===========================
+       DOCTOR / ABOUT
+    =========================== */
+    .about {
+      background: var(--c-bg-dark);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-lg);
+      align-items: start;
+    }
+
+    @media (min-width: 600px) {
+      .about-inner {
+        grid-template-columns: 200px 1fr;
+      }
+    }
+
+    .about-photo {
+      width: 100%;
+      max-width: 200px;
+      aspect-ratio: 3/4;
+      background: var(--c-sage);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-photo .img-placeholder {
+      position: absolute;
+      inset: 0;
+    }
+
+    .about-name {
+      font-family: var(--f-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--c-deep);
+      margin-bottom: 0.2rem;
+    }
+
+    .about-title {
+      font-size: 0.78rem;
+      color: var(--c-gold);
+      letter-spacing: 0.1em;
+      margin-bottom: var(--sp-md);
+    }
+
+    .about-creds {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.8rem;
+      margin-bottom: var(--sp-md);
+    }
+
+    .about-creds li {
+      font-size: 0.75rem;
+      color: var(--c-mid);
+      border: 1px solid var(--c-gold-lt);
+      padding: 0.2rem 0.6rem;
+    }
+
+    .about-bio {
+      font-size: 0.88rem;
+      line-height: 2;
+      color: var(--c-muted);
+    }
+
+    /* ===========================
+       FINAL CTA
+    =========================== */
+    .final-cta {
+      background: var(--c-deep);
+      text-align: center;
+      padding: var(--sp-xl) var(--sp-md);
+    }
+
+    .final-cta .section-label {
+      display: inline-block;
+      color: var(--c-gold);
+    }
+
+    .final-cta__heading {
+      font-family: var(--f-serif);
+      font-weight: 400;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      line-height: 1.9;
+      color: var(--c-white);
+      margin-bottom: var(--sp-sm);
+    }
+
+    .final-cta__sub {
+      font-size: 0.85rem;
+      color: var(--c-sage);
+      line-height: 1.9;
+      margin-bottom: var(--sp-lg);
+    }
+
+    .final-cta .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn--light {
+      background: transparent;
+      color: var(--c-white);
+      border: 1px solid rgba(255,255,255,0.35);
+    }
+
+    .btn--light:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .btn--gold {
+      background: var(--c-gold);
+      color: var(--c-white);
+      border: 1px solid var(--c-gold);
+    }
+
+    .btn--gold:hover {
+      background: #a3946f;
+      border-color: #a3946f;
+    }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    .footer {
+      padding: var(--sp-md) var(--sp-md);
+      text-align: center;
+      border-top: 1px solid var(--c-line);
+      background: var(--c-bg);
+    }
+
+    .footer__logo {
+      font-family: var(--f-serif);
+      font-size: 0.85rem;
+      color: var(--c-deep);
+      margin-bottom: 0.4rem;
+    }
+
+    .footer__meta {
+      font-size: 0.72rem;
+      color: var(--c-muted);
+      line-height: 1.8;
+    }
+
+    /* ===========================
+       SCROLL REVEAL (lightweight)
+    =========================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="サイトナビゲーション">
+    <span class="nav__logo">こころパートナークリニック</span>
+    <a href="#reserve" class="nav__cta">相談する</a>
+  </nav>
+
+
+  <!-- ========= HERO ========= -->
+  <section class="hero" aria-label="メインビジュアル">
+    <div class="hero__text">
+      <p class="hero__eyebrow">Mental &amp; Physical Maintenance</p>
+      <h1 class="hero__headline">
+        <span>止まれなくなった人が、</span>
+        <span>安心して現在地を</span>
+        <span>整理できる精神科</span>
+      </h1>
+      <p class="hero__sub">
+        責任ある立場にいる人ほど、自分の不調に気づきにくいものです。<br>
+        睡眠・栄養・思考・感情・生活負荷を医療の視点から整理し、<br>
+        再び自分で選べる状態を取り戻すための、完全オンライン自由診療クリニックです。
+      </p>
+      <div class="hero__actions">
+        <a href="#reserve" class="btn btn--primary">初期ご案内価格で相談する</a>
+        <a href="#concept" class="btn btn--outline">診療内容を見る</a>
+      </div>
+    </div>
+    <div class="hero__image" aria-hidden="true">
+      <!-- 写真差し替え: <img src="HERO_IMAGE.jpg" alt=""> に変更 -->
+      <div class="img-placeholder">Photo Placeholder</div>
+    </div>
+  </section>
+
+
+  <!-- ========= FOR WHOM ========= -->
+  <section class="section for-whom" id="for-whom">
+    <div class="section__inner">
+      <span class="section-label reveal">For you</span>
+      <h2 class="section__heading reveal">このような方へ</h2>
+      <div class="divider reveal"></div>
+      <ul class="checklist">
+        <li class="reveal">責任ある立場にいる</li>
+        <li class="reveal">人前では保てている</li>
+        <li class="reveal">まだ動けてしまう</li>
+        <li class="reveal">弱音を吐く場所がない</li>
+        <li class="reveal">休み方がわからなくなっている</li>
+        <li class="reveal">頭の中が常に忙しい</li>
+        <li class="reveal">「私が止まると回らない」と感じている</li>
+        <li class="reveal">病気かどうかではなく、まず今の状態を整理したい</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ========= ACCEL ========= -->
+  <section class="section accel" aria-label="アクセルを踏みっぱなしの状態">
+    <div class="section__inner">
+      <span class="section-label reveal">Notice</span>
+      <p class="accel__quote reveal">
+        動けていることと、<br>余裕があることは<br>同じではありません。
+      </p>
+      <div class="divider reveal" style="background:var(--c-gold);"></div>
+      <p class="accel__body reveal">
+        外では問題なく動けていても、内側ではずっと気を張り、考え続け、責任を抱え続けていることがあります。アクセルを踏みっぱなしの状態は、ある日突然、限界として現れます。強い人ほど、自分の崩れに気づけない。だからこそ、医療の視点からコンディションを整える場所が必要です。
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ========= CONCEPT ========= -->
+  <section class="section" id="concept">
+    <div class="section__inner">
+      <span class="section-label reveal">Our Approach</span>
+      <h2 class="section__heading reveal">「走り続けるか、一度立ち止まるか」<br>医療の視点から一緒に考える場所</h2>
+      <div class="divider reveal"></div>
+      <p class="concept__lead reveal">
+        病名をつけるためだけの診療ではありません。<br>
+        薬だけで解決しようとする診療でもありません。
+      </p>
+      <p class="concept__body reveal">
+        こころパートナークリニックは、今の状態を丁寧に整理し、「これから走り続けてよいのか、一度立ち止まるべきか」を、医療の視点から一緒に考える場所です。患者さんが、ちゃんと休める・感情を感じられる・自分で選べる状態を取り戻せるよう、現在地を丁寧に整理する伴走者でありたいと考えています。
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ========= 5 PERSPECTIVES ========= -->
+  <section class="section perspectives" id="perspectives">
+    <div class="section__inner">
+      <span class="section-label reveal">5 Perspectives</span>
+      <h2 class="section__heading reveal">診療で見る5つの視点</h2>
+      <div class="divider reveal"></div>
+      <p class="concept__body reveal">
+        症状だけを見るのではなく、「なぜ今つらいのか」を整理するために、5つの視点から現在地を確認します。
+      </p>
+    </div>
+    <div class="section__inner--wide">
+      <div class="perspectives-grid">
+        <div class="perspective-card reveal">
+          <span class="perspective-num">01</span>
+          <p class="perspective-title">眠りはどうか</p>
+          <p class="perspective-body">眠れているか、途中で目が覚めないか、寝ても回復できているか。「何時間寝たか」よりも、「回復できる眠りか」を大切にします。</p>
+        </div>
+        <div class="perspective-card reveal">
+          <span class="perspective-num">02</span>
+          <p class="perspective-title">栄養や身体の状態はどうか</p>
+          <p class="perspective-body">食事は取れているか、疲れやすくなっていないか、朝から動けているか。身体の状態は、心の状態にも大きく影響します。</p>
+        </div>
+        <div class="perspective-card reveal">
+          <span class="perspective-num">03</span>
+          <p class="perspective-title">頭が働きすぎていないか</p>
+          <p class="perspective-body">考えごとが止まらない、同じことを繰り返し考えてしまう、判断することが増えている。不安だけではなく、「頭の使いすぎ」という視点でも整理します。</p>
+        </div>
+        <div class="perspective-card reveal">
+          <span class="perspective-num">04</span>
+          <p class="perspective-title">心が疲れていないか</p>
+          <p class="perspective-body">イライラしやすい、涙もろい、何も感じない、人と会うと疲れる。感情は弱さではなく、大切なサインとして丁寧に扱います。</p>
+        </div>
+        <div class="perspective-card reveal">
+          <span class="perspective-num">05</span>
+          <p class="perspective-title">責任を抱えすぎていないか</p>
+          <p class="perspective-body">人を支える立場にいる、頼られることが多い、弱音を吐きづらい、休むことに罪悪感がある。症状だけではなく、今抱えている負荷も確認します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========= VS COACHING ========= -->
+  <section class="section diff">
+    <div class="section__inner">
+      <span class="section-label reveal">Position</span>
+      <h2 class="section__heading reveal">コーチング・カウンセリングとの違い</h2>
+      <div class="divider reveal"></div>
+      <p class="concept__body reveal">
+        こころパートナークリニックは、コーチングやカウンセリングの代替ではありません。医療的なセーフティレイヤーとして、身体・睡眠・精神状態のコンディションを整理する場所です。
+      </p>
+      <div style="overflow-x:auto; margin-top: var(--sp-lg);">
+        <table class="diff-table reveal">
+          <thead>
+            <tr>
+              <th>観点</th>
+              <th>こころパートナークリニック</th>
+              <th>コーチング / カウンセリング</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>担い手</td>
+              <td class="highlight">精神科医（医療資格）</td>
+              <td class="other">コーチ・カウンセラー</td>
+            </tr>
+            <tr>
+              <td>対象</td>
+              <td class="highlight">疲弊・グレーゾーンを含むすべての段階</td>
+              <td class="other">ある程度エネルギーがある人</td>
+            </tr>
+            <tr>
+              <td>できること</td>
+              <td class="highlight">医療的リスク判断・睡眠栄養評価・診断・処方</td>
+              <td class="other">対話・目標設定・内省支援</td>
+            </tr>
+            <tr>
+              <td>役割</td>
+              <td class="highlight">医療的セーフティレイヤー</td>
+              <td class="other">支援・伴走</td>
+            </tr>
+            <tr>
+              <td>医療連携</td>
+              <td class="highlight">医療である・必要時に専門科へ紹介</td>
+              <td class="other">病態判断・医療つなぎが困難</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========= FLOW ========= -->
+  <section class="section" id="flow">
+    <div class="section__inner">
+      <span class="section-label reveal">How it works</span>
+      <h2 class="section__heading reveal">診療の流れ</h2>
+      <div class="divider reveal"></div>
+      <ol class="flow-steps" style="list-style:none;">
+        <li class="flow-step reveal">
+          <span class="flow-step__num">1</span>
+          <div>
+            <p class="flow-step__title">事前問診</p>
+            <p class="flow-step__body">ご予約後、オンラインで事前問診をご記入いただきます。現在の状態・生活習慣・お悩みの概要を事前に共有していただくことで、診療時間を有効に使えます。</p>
+          </div>
+        </li>
+        <li class="flow-step reveal">
+          <span class="flow-step__num">2</span>
+          <div>
+            <p class="flow-step__title">初診（40分）</p>
+            <p class="flow-step__body">ビデオ通話にて実施。5つの視点から、現在の状態を丁寧に整理します。「今どのような状態にあるのか」を、医療の視点から一緒に確認します。</p>
+          </div>
+        </li>
+        <li class="flow-step reveal">
+          <span class="flow-step__num">3</span>
+          <div>
+            <p class="flow-step__title">状態整理・方針確認</p>
+            <p class="flow-step__body">診療の中で、現在地を整理します。走り続けてよいのか、一度立ち止まるべきか。必要であれば、睡眠・栄養・生活負荷への具体的な対応を提案します。</p>
+          </div>
+        </li>
+        <li class="flow-step reveal">
+          <span class="flow-step__num">4</span>
+          <div>
+            <p class="flow-step__title">次の一歩を一緒に考える</p>
+            <p class="flow-step__body">処方や専門科への紹介が必要な場合はご提案します。必要でない場合も、今後どう過ごすかを一緒に考えます。</p>
+          </div>
+        </li>
+        <li class="flow-step reveal">
+          <span class="flow-step__num">5</span>
+          <div>
+            <p class="flow-step__title">再診（30分）</p>
+            <p class="flow-step__body">状態の変化を確認し、5つの視点から再評価します。継続的に現在地を確認することで、コンディションを整え続けます。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+
+  <!-- ========= PRICING ========= -->
+  <section class="section pricing" id="pricing">
+    <div class="section__inner">
+      <span class="section-label reveal">Pricing</span>
+      <h2 class="section__heading reveal">料金</h2>
+      <div class="divider reveal"></div>
+      <div class="pricing-grid">
+        <!-- 初診 -->
+        <div class="pricing-card reveal">
+          <span class="pricing-card__badge">初期ご案内価格</span>
+          <p class="pricing-card__type">初診</p>
+          <p class="pricing-card__duration">40分</p>
+          <div class="pricing-card__price-row">
+            <span class="price-main">¥15,000</span>
+            <span class="price-unit">税込</span>
+          </div>
+          <p class="price-original">通常価格 ¥25,000</p>
+          <ul class="pricing-card__includes">
+            <li>事前問診の確認</li>
+            <li>現在の状態整理</li>
+            <li>5つの視点からの評価</li>
+            <li>負荷がかかっているポイントの整理</li>
+            <li>次の一歩を一緒に考える</li>
+          </ul>
+        </div>
+        <!-- 再診 -->
+        <div class="pricing-card reveal">
+          <span class="pricing-card__badge">初期ご案内価格</span>
+          <p class="pricing-card__type">再診</p>
+          <p class="pricing-card__duration">30分</p>
+          <div class="pricing-card__price-row">
+            <span class="price-main">¥10,000</span>
+            <span class="price-unit">税込</span>
+          </div>
+          <p class="price-original">通常価格 ¥15,000</p>
+          <ul class="pricing-card__includes">
+            <li>状態変化の確認</li>
+            <li>5つの視点からの再評価</li>
+            <li>睡眠や生活習慣の見直し</li>
+            <li>負荷がかかっているポイントの整理</li>
+            <li>次の一歩を一緒に考える</li>
+          </ul>
+        </div>
+      </div>
+      <p class="pricing-note reveal">
+        ※ 現在は診療モデル構築・運営体制整備の初期フェーズのため、初期ご案内価格にてご案内しています。フィードバックをいただきながら、より良い診療モデルをともに育てていただける方への感謝を込めた価格設定です。<br>
+        ※ 本クリニックは自由診療です。健康保険は適用されません。<br>
+        ※ 完全オンライン診療のため、全国からご受診いただけます。
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ========= ABOUT ========= -->
+  <section class="section about" id="about">
+    <div class="section__inner">
+      <span class="section-label reveal">Director</span>
+      <h2 class="section__heading reveal">院長・クリニックについて</h2>
+      <div class="divider reveal"></div>
+      <div class="about-inner">
+        <div>
+          <div class="about-photo reveal">
+            <!-- 写真差し替え: <img src="DOCTOR_PHOTO.jpg" alt="竹田院長"> に変更 -->
+            <div class="img-placeholder">Photo</div>
+          </div>
+        </div>
+        <div>
+          <p class="about-name reveal">竹田 〇〇</p>
+          <p class="about-title reveal">院長 / 精神科医</p>
+          <ul class="about-creds reveal">
+            <li>精神保健指定医</li>
+            <li>産業医</li>
+            <li>抗加齢医学専門医</li>
+          </ul>
+          <p class="about-bio reveal">
+            精神科医として多くの方を診る中で、「病気になる前の段階で、ちゃんと相談できる場所がない」という現実に直面してきました。動けているのに休めない、頑張れているのに内側は限界、そういう方が壊れていくのを何度も見てきました。<br><br>
+            薬だけで解決しようとするのではなく、睡眠・栄養・思考・感情・生活負荷を含めて整理する診療を大切にしています。高責任な立場にある方が、壊れる前に一度立ち止まれる場所をつくりたい。こころパートナークリニックは、そのための診療モデルです。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========= FINAL CTA ========= -->
+  <section class="final-cta" id="reserve">
+    <span class="section-label reveal">Next Step</span>
+    <h2 class="final-cta__heading reveal">
+      今の状態を、医療の視点から<br>一度整理してみませんか。
+    </h2>
+    <p class="final-cta__sub reveal">
+      病気かどうかではなく、まず現在地を確認するだけでも、次の選択肢が見えてきます。<br>
+      初期ご案内価格にて、ご相談をお待ちしています。
+    </p>
+    <div class="cta-group reveal">
+      <!-- 予約URLを href に入れる -->
+      <a href="#" class="btn btn--gold">予約する（初期ご案内価格）</a>
+      <a href="#" class="btn btn--light">お問い合わせ</a>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="footer__logo">こころパートナークリニック</p>
+    <p class="footer__meta">
+      完全オンライン・自由診療 ｜ 精神科・心療内科<br>
+      © 2025 Kokoro Partner Clinic. All rights reserved.
+    </p>
+  </footer>
+
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
