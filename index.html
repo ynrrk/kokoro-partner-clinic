@@ -371,7 +371,7 @@
 
     .perspectives-photo {
       max-width: var(--max-w-wide);
-      margin: 0 auto var(--sp-lg);
+      margin: 0 auto var(--sp-xl);
       padding: 0 var(--sp-md);
     }
 
@@ -384,9 +384,9 @@
     }
 
     .perspective-icon {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 0.6rem;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 1.2rem;
     }
 
     .perspective-icon svg {
@@ -398,7 +398,7 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 2px;
-      margin-top: var(--sp-lg);
+      margin-top: var(--sp-xl);
       border: 1px solid var(--c-line);
     }
 
@@ -409,7 +409,7 @@
     }
 
     .perspective-card {
-      padding: var(--sp-md) 1.5rem var(--sp-md);
+      padding: var(--sp-lg) 2rem var(--sp-lg);
       border-bottom: 1px solid var(--c-line);
       position: relative;
     }
@@ -438,7 +438,7 @@
       font-weight: 300;
       color: var(--c-gold-lt);
       line-height: 1;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.8rem;
       display: block;
     }
 
@@ -447,7 +447,7 @@
       font-size: 1rem;
       font-weight: 400;
       color: var(--c-deep);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.9rem;
     }
 
     .perspective-body {
@@ -632,13 +632,20 @@
       color: var(--c-muted);
     }
 
-    .diff-collab-label {
-      font-family: var(--f-serif);
-      font-size: 0.85rem;
-      font-weight: 400;
+    .diff-table-caption {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
       color: var(--c-mid);
-      letter-spacing: 0.08em;
-      margin-bottom: var(--sp-sm);
+      margin-top: var(--sp-lg);
+      margin-bottom: 0.4rem;
+      text-align: left;
+    }
+
+    .diff-table-wrap {
+      overflow-x: auto;
     }
 
     /* ===========================
@@ -785,27 +792,31 @@
       display: flex;
       align-items: baseline;
       gap: 0.6rem;
-      margin-bottom: 0.2rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
     }
 
     .price-main {
       font-family: var(--f-display);
-      font-size: 1.9rem;
-      font-weight: 300;
+      font-size: 2.6rem;
+      font-weight: 400;
       color: var(--c-deep);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
 
     .price-unit {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--c-muted);
+      align-self: flex-end;
+      margin-bottom: 0.3rem;
     }
 
     .price-original {
-      font-size: 0.78rem;
-      color: var(--c-muted);
+      font-size: 0.75rem;
+      color: var(--c-mid);
       text-decoration: line-through;
       margin-bottom: var(--sp-md);
+      opacity: 0.7;
     }
 
     .pricing-card__includes {
@@ -1258,8 +1269,8 @@
       <p class="concept__body reveal" style="margin-top: var(--sp-md);">
         必要に応じて、コーチングやカウンセリング、専門医療機関などとの連携も行います。
       </p>
-      <div style="overflow-x:auto; margin-top: var(--sp-lg);">
-        <p class="diff-collab-label reveal">ともに支える、それぞれの役割</p>
+      <p class="diff-table-caption reveal">ともに支える、それぞれの役割</p>
+      <div class="diff-table-wrap">
         <table class="diff-table reveal">
           <thead>
             <tr>
