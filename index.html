@@ -327,6 +327,17 @@
       margin-top: 0.75em;
     }
 
+    .for-whom__cta-box {
+      margin-top: var(--sp-lg);
+      padding: 1.4rem 1.8rem;
+      border-top: 1px solid var(--c-gold-lt);
+      font-family: var(--f-serif);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 400;
+      line-height: 2;
+      color: var(--c-deep);
+    }
+
     /* ===========================
        CONCEPT
     =========================== */
@@ -350,6 +361,31 @@
     =========================== */
     .perspectives {
       background: var(--c-white);
+    }
+
+    .perspectives-photo {
+      max-width: var(--max-w-wide);
+      margin: 0 auto var(--sp-lg);
+      padding: 0 var(--sp-md);
+    }
+
+    .perspectives-photo .img-placeholder,
+    .perspectives-photo img {
+      width: 100%;
+      aspect-ratio: 16 / 6;
+      object-fit: cover;
+      background: var(--c-sage);
+    }
+
+    .perspective-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 0.6rem;
+    }
+
+    .perspective-icon svg {
+      width: 100%;
+      height: 100%;
     }
 
     .perspectives-grid {
@@ -420,6 +456,48 @@
     .accel {
       background: var(--c-deep);
       color: var(--c-white);
+      padding: 0;
+    }
+
+    .accel__inner {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .accel__inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .accel__text {
+      padding: var(--sp-xl) var(--sp-md) var(--sp-lg);
+    }
+
+    @media (min-width: 768px) {
+      .accel__text {
+        padding: var(--sp-xl) var(--sp-lg) var(--sp-lg) clamp(2rem, 6vw, 6rem);
+      }
+    }
+
+    .accel__image {
+      position: relative;
+      overflow: hidden;
+      min-height: 300px;
+    }
+
+    @media (min-width: 768px) {
+      .accel__image {
+        min-height: unset;
+      }
+    }
+
+    .accel__image img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .accel .section-label {
@@ -548,6 +626,15 @@
       color: var(--c-muted);
     }
 
+    .diff-collab-label {
+      font-family: var(--f-serif);
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--c-mid);
+      letter-spacing: 0.08em;
+      margin-bottom: var(--sp-sm);
+    }
+
     /* ===========================
        FLOW
     =========================== */
@@ -607,6 +694,33 @@
       font-size: 0.82rem;
       color: var(--c-muted);
       line-height: 1.85;
+    }
+
+    .flow-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-lg);
+      align-items: start;
+    }
+
+    @media (min-width: 768px) {
+      .flow-inner {
+        grid-template-columns: 1fr 340px;
+      }
+    }
+
+    .flow-image {
+      position: sticky;
+      top: 100px;
+      overflow: hidden;
+    }
+
+    .flow-image img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
 
     /* ===========================
@@ -787,12 +901,78 @@
     }
 
     /* ===========================
+       FLOATING CTA
+    =========================== */
+    .floating-cta {
+      position: fixed;
+      bottom: 1.8rem;
+      right: 1.5rem;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .floating-cta.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+
+    .floating-cta__btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--c-gold);
+      color: var(--c-white);
+      font-family: var(--f-sans);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      padding: 0.9rem 1.3rem;
+      text-decoration: none;
+      line-height: 1.6;
+      white-space: nowrap;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      outline: 2px solid var(--c-gold);
+      outline-offset: 3px;
+      transition: background 0.25s, outline-color 0.25s;
+    }
+
+    .floating-cta__btn:hover {
+      background: #a3946f;
+      outline-color: #a3946f;
+    }
+
+    .floating-cta__label {
+      font-size: 0.65rem;
+      opacity: 0.8;
+      margin-bottom: 0.1rem;
+    }
+
+    /* ===========================
        FINAL CTA
     =========================== */
     .final-cta {
-      background: var(--c-deep);
+      position: relative;
+      background-image: url('images/woman_sky.jpg');
+      background-size: cover;
+      background-position: center 35%;
       text-align: center;
       padding: var(--sp-xl) var(--sp-md);
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(30, 42, 38, 0.72);
+    }
+
+    .final-cta > * {
+      position: relative;
+      z-index: 1;
     }
 
     .final-cta .section-label {
@@ -909,17 +1089,19 @@
         <span>整理できる精神科</span>
       </h1>
       <p class="hero__sub">
-        責任ある立場にいる人ほど、自分の不調に気づきにくいものです。<br>
-        睡眠・栄養・思考・感情・生活負荷を医療の視点から整理し、<br>
-        再び自分で選べる状態を取り戻すための、完全オンライン自由診療クリニックです。
+        頑張れているのに、つらい。<br>
+        まだ動ける。<br>
+        でも、このままでいいのかな。<br><br>
+        そんな方のための<br>
+        精神科医によるオンライン診療です。
       </p>
       <div class="hero__actions">
-        <a href="#reserve" class="btn btn--primary">初期ご案内価格で相談する</a>
+        <a href="#reserve" class="btn btn--primary">初診（40分）を予約する</a>
         <a href="#concept" class="btn btn--outline">診療内容を見る</a>
       </div>
     </div>
     <div class="hero__image" aria-hidden="true">
-      <img src="images/hero.png" alt="">
+      <img src="images/woman_window_sharp.jpg" alt="">
     </div>
   </section>
 
@@ -938,23 +1120,31 @@
         <li class="reveal">休み方がわからなくなっている</li>
         <li class="reveal">頭の中が常に忙しい</li>
         <li class="reveal">「私が止まると回らない」と感じている</li>
-        <li class="reveal">病気かどうかではなく、まず今の状態を整理したい</li>
       </ul>
+      <div class="for-whom__cta-box reveal">
+        病気かどうかではなく、<br>
+        今どんな状態なのかを確認してみませんか。
+      </div>
     </div>
   </section>
 
 
   <!-- ========= ACCEL ========= -->
   <section class="section accel" aria-label="アクセルを踏みっぱなしの状態">
-    <div class="section__inner">
-      <span class="section-label reveal">Notice</span>
-      <p class="accel__quote reveal">
-        動けていることと、<br>余裕があることは<br>同じではありません。
-      </p>
-      <div class="divider reveal" style="background:var(--c-gold);"></div>
-      <p class="accel__body reveal">
-        外では問題なく動けていても、内側ではずっと気を張り、考え続け、責任を抱え続けていることがあります。アクセルを踏みっぱなしの状態は、ある日突然、限界として現れます。強い人ほど、自分の崩れに気づけない。だからこそ、医療の視点からコンディションを整える場所が必要です。
-      </p>
+    <div class="accel__inner">
+      <div class="accel__text">
+        <span class="section-label reveal">Notice</span>
+        <p class="accel__quote reveal">
+          あなたの「動けている」は、<br>無理に動かしている状態ではありませんか？
+        </p>
+        <div class="divider reveal" style="background:var(--c-gold);"></div>
+        <p class="accel__body reveal">
+          責任ある立場にいる人ほど、不調に気づかないまま頑張り続けてしまいます。仕事もできる。周囲から見ても問題なく見える。それでも、眠れない、疲れが抜けない、頭が休まらない。まだ動けるから大丈夫。そう思っていても、ある日突然、心や体が動かなくなることがあります。だからこそ、今の状態を医療の視点から確認できる場所が必要です。
+        </p>
+      </div>
+      <div class="accel__image reveal" aria-hidden="true">
+        <img src="images/woman_problem.jpg" alt="">
+      </div>
     </div>
   </section>
 
@@ -970,7 +1160,7 @@
         薬だけで解決しようとする診療でもありません。
       </p>
       <p class="concept__body reveal">
-        こころパートナークリニックは、今の状態を丁寧に整理し、「これから走り続けてよいのか、一度立ち止まるべきか」を、医療の視点から一緒に考える場所です。患者さんが、ちゃんと休める・感情を感じられる・自分で選べる状態を取り戻せるよう、現在地を丁寧に整理する伴走者でありたいと考えています。
+        こころパートナークリニックは、今の状態を丁寧に整理し、「これから走り続けてよいのか、一度立ち止まるべきか」を、医療の視点から一緒に考える場所です。診療の中で、今の状態を丁寧に確認し、あなたに合った整え方を一緒に考えていきます。
       </p>
     </div>
   </section>
@@ -989,26 +1179,59 @@
     <div class="section__inner--wide">
       <div class="perspectives-grid">
         <div class="perspective-card reveal">
+          <div class="perspective-icon">
+            <svg viewBox="0 0 80 80" fill="none" stroke="#B8A882" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M52,22 a20,20 0 1,0 4,36 a26,26 0 1,1 -4,-36 Z"/>
+            </svg>
+          </div>
           <span class="perspective-num">01</span>
           <p class="perspective-title">眠りはどうか</p>
           <p class="perspective-body">眠れているか、途中で目が覚めないか、寝ても回復できているか。「何時間寝たか」よりも、「回復できる眠りか」を大切にします。</p>
         </div>
         <div class="perspective-card reveal">
+          <div class="perspective-icon">
+            <svg viewBox="0 0 80 80" fill="none" stroke="#B8A882" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M40,58 C40,30 24,18 16,16 C16,32 26,46 40,58 Z"/>
+              <path d="M40,58 C40,30 56,18 64,16 C64,32 54,46 40,58 Z"/>
+              <line x1="40" y1="58" x2="40" y2="64"/>
+            </svg>
+          </div>
           <span class="perspective-num">02</span>
           <p class="perspective-title">栄養や身体の状態はどうか</p>
           <p class="perspective-body">食事は取れているか、疲れやすくなっていないか、朝から動けているか。身体の状態は、心の状態にも大きく影響します。</p>
         </div>
         <div class="perspective-card reveal">
+          <div class="perspective-icon">
+            <svg viewBox="0 0 80 80" fill="none" stroke="#B8A882" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16,40 Q22,28 28,40 T40,40 T52,40 T64,40"/>
+              <path d="M16,50 Q22,42 28,50 T40,50 T52,50 T64,50" opacity="0.5"/>
+            </svg>
+          </div>
           <span class="perspective-num">03</span>
           <p class="perspective-title">頭が働きすぎていないか</p>
           <p class="perspective-body">考えごとが止まらない、同じことを繰り返し考えてしまう、判断することが増えている。不安だけではなく、「頭の使いすぎ」という視点でも整理します。</p>
         </div>
         <div class="perspective-card reveal">
+          <div class="perspective-icon">
+            <svg viewBox="0 0 80 80" fill="none" stroke="#B8A882" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M40,16 C52,32 60,42 60,52 C60,63 51,70 40,70 C29,70 20,63 20,52 C20,42 28,32 40,16 Z"/>
+            </svg>
+          </div>
           <span class="perspective-num">04</span>
           <p class="perspective-title">心が疲れていないか</p>
           <p class="perspective-body">イライラしやすい、涙もろい、何も感じない、人と会うと疲れる。感情は弱さではなく、大切なサインとして丁寧に扱います。</p>
         </div>
         <div class="perspective-card reveal">
+          <div class="perspective-icon">
+            <svg viewBox="0 0 80 80" fill="none" stroke="#B8A882" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="40" y1="18" x2="40" y2="56"/>
+              <line x1="18" y1="28" x2="62" y2="28"/>
+              <path d="M10,28 L18,28 L14,42 Q14,48 22,48 Q30,48 30,42 L26,28"/>
+              <path d="M50,28 L58,28 L54,42 Q54,48 62,48 Q70,48 70,42 L66,28"/>
+              <line x1="28" y1="62" x2="52" y2="62"/>
+              <line x1="40" y1="56" x2="40" y2="62"/>
+            </svg>
+          </div>
           <span class="perspective-num">05</span>
           <p class="perspective-title">責任を抱えすぎていないか</p>
           <p class="perspective-body">人を支える立場にいる、頼られることが多い、弱音を吐きづらい、休むことに罪悪感がある。症状だけではなく、今抱えている負荷も確認します。</p>
@@ -1025,15 +1248,22 @@
       <h2 class="section__heading reveal">コーチング・カウンセリングとの違い</h2>
       <div class="divider reveal"></div>
       <p class="concept__body reveal">
-        こころパートナークリニックは、コーチングやカウンセリングの代替ではありません。医療的なセーフティレイヤーとして、身体・睡眠・精神状態のコンディションを整理する場所です。
+        こころパートナークリニックは、コーチングやカウンセリングの代替ではありません。身体・睡眠・精神状態を医療の視点から確認し、今の状態を整理するための場所です。
+      </p>
+      <p class="concept__body reveal" style="margin-top: var(--sp-md);">
+        また、コーチングやカウンセリングを受けてみたいものの、その前に医療的なセーフティレイヤーとして評価を受けておきたい方にもご利用いただけます。
+      </p>
+      <p class="concept__body reveal" style="margin-top: var(--sp-md);">
+        必要に応じて、コーチングやカウンセリング、専門医療機関などとの連携も行います。
       </p>
       <div style="overflow-x:auto; margin-top: var(--sp-lg);">
+        <p class="diff-collab-label reveal">ともに支える、それぞれの役割</p>
         <table class="diff-table reveal">
           <thead>
             <tr>
               <th>観点</th>
               <th>こころパートナークリニック</th>
-              <th>コーチング / カウンセリング</th>
+              <th>コーチング・カウンセリング</th>
             </tr>
           </thead>
           <tbody>
@@ -1043,24 +1273,29 @@
               <td class="other">コーチ・カウンセラー</td>
             </tr>
             <tr>
+              <td>主な役割</td>
+              <td class="highlight">医療的セーフティレイヤーとして状態を確認する</td>
+              <td class="other">行動変容や自己理解を支援する</td>
+            </tr>
+            <tr>
               <td>対象</td>
-              <td class="highlight">疲弊・グレーゾーンを含むすべての段階</td>
-              <td class="other">ある程度エネルギーがある人</td>
+              <td class="highlight">今の状態を確認したい全ての方</td>
+              <td class="other">行動変容や成長を目指す方</td>
             </tr>
             <tr>
               <td>できること</td>
-              <td class="highlight">医療的リスク判断・睡眠栄養評価・診断・処方</td>
-              <td class="other">対話・目標設定・内省支援</td>
+              <td class="highlight">医療的評価・診断・処方・睡眠や身体状態の確認</td>
+              <td class="other">対話・内省支援・目標設定</td>
             </tr>
             <tr>
-              <td>役割</td>
-              <td class="highlight">医療的セーフティレイヤー</td>
-              <td class="other">支援・伴走</td>
+              <td>強み</td>
+              <td class="highlight">医療的リスクや不調の見極め</td>
+              <td class="other">行動変容や継続支援</td>
             </tr>
             <tr>
-              <td>医療連携</td>
-              <td class="highlight">医療である・必要時に専門科へ紹介</td>
-              <td class="other">病態判断・医療つなぎが困難</td>
+              <td>連携</td>
+              <td class="highlight">必要に応じて他サービスと連携</td>
+              <td class="other">必要時に医療機関と連携</td>
             </tr>
           </tbody>
         </table>
@@ -1075,6 +1310,7 @@
       <span class="section-label reveal">How it works</span>
       <h2 class="section__heading reveal">診療の流れ</h2>
       <div class="divider reveal"></div>
+      <div class="flow-inner">
       <ol class="flow-steps" style="list-style:none;">
         <li class="flow-step reveal">
           <span class="flow-step__num">1</span>
@@ -1112,6 +1348,10 @@
           </div>
         </li>
       </ol>
+      <div class="flow-image reveal">
+        <img src="images/consult.jpg" alt="">
+      </div>
+      </div>
     </div>
   </section>
 
@@ -1190,8 +1430,8 @@
             <li>抗加齢医学専門医</li>
           </ul>
           <p class="about-bio reveal">
-            精神科医として多くの方を診る中で、「病気になる前の段階で、ちゃんと相談できる場所がない」という現実に直面してきました。動けているのに休めない、頑張れているのに内側は限界、そういう方が壊れていくのを何度も見てきました。<br><br>
-            薬だけで解決しようとするのではなく、睡眠・栄養・思考・感情・生活負荷を含めて整理する診療を大切にしています。高責任な立場にある方が、壊れる前に一度立ち止まれる場所をつくりたい。こころパートナークリニックは、そのための診療モデルです。
+            精神科医として延べ3万件を超えるオンライン精神科診療を行うなかで、「病気になる前の段階で、ちゃんと相談できる場所がない」という現実に直面してきました。動けている。頑張れている。それでも、眠れない、疲れが抜けない、頭が休まらない。そんな方々に多く出会ってきました。<br><br>
+            薬も含め、必要な対応を見極めながら、今の状態を医療的な観点から確認し、これからの整え方を一緒に考える場所をつくりたい。こころパートナークリニックは、そのための診療モデルです。
           </p>
         </div>
       </div>
@@ -1217,6 +1457,14 @@
   </section>
 
 
+  <!-- FLOATING CTA -->
+  <div class="floating-cta" id="floatingCta">
+    <a href="#reserve" class="floating-cta__btn">
+      <span class="floating-cta__label">初診 40分</span>
+      予約する
+    </a>
+  </div>
+
   <!-- FOOTER -->
   <footer class="footer">
     <p class="footer__logo">こころパートナークリニック</p>
@@ -1239,6 +1487,33 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Floating CTA: ヒーローを過ぎたら表示
+    const floatingCta = document.getElementById('floatingCta');
+    const hero = document.querySelector('.hero');
+    const finalCta = document.querySelector('.final-cta');
+
+    const ctaObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) {
+          floatingCta.classList.add('visible');
+        } else {
+          floatingCta.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // final-ctaに入ったら非表示
+    const finalObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          floatingCta.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    ctaObserver.observe(hero);
+    finalObserver.observe(finalCta);
   </script>
 </body>
 </html>
