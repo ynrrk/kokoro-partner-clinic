@@ -327,14 +327,20 @@
       margin-top: 0.75em;
     }
 
-    .for-whom__cta-box {
+    .for-whom-callout {
       margin-top: var(--sp-lg);
-      padding: 1.4rem 1.8rem;
-      border-top: 1px solid var(--c-gold-lt);
+      padding: var(--sp-md) var(--sp-lg);
+      background: var(--c-white);
+      border-top: 1px solid var(--c-gold);
+      text-align: center;
+    }
+
+    .for-whom-callout__text {
       font-family: var(--f-serif);
-      font-size: clamp(1rem, 2vw, 1.15rem);
       font-weight: 400;
-      line-height: 2;
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      line-height: 1.9;
+      letter-spacing: 0.03em;
       color: var(--c-deep);
     }
 
@@ -1118,9 +1124,8 @@
         <li class="reveal">頭の中が常に忙しい</li>
         <li class="reveal">「私が止まると回らない」と感じている</li>
       </ul>
-      <div class="for-whom__cta-box reveal">
-        病気かどうかではなく、<br>
-        今どんな状態なのかを確認してみませんか。
+      <div class="for-whom-callout reveal">
+        <p class="for-whom-callout__text">病気かどうかではなく、<br>今どんな状態なのかを確認してみませんか。</p>
       </div>
     </div>
   </section>
@@ -1140,7 +1145,7 @@
         </p>
       </div>
       <div class="accel__image reveal" aria-hidden="true">
-        <img src="images/woman_problem.jpg" alt="">
+        <img src="images/woman_side.jpg" alt="">
       </div>
     </div>
   </section>
