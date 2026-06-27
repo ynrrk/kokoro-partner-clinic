@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>こころパートナークリニック｜責任ある立場の方のための心身メンテナンス</title>
+  <link rel="icon" type="image/png" href="images/fabicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet" />
@@ -16,9 +17,9 @@
       --c-bg-dark:   #EEECE6;
       --c-sage:      #D4DEDA;
       --c-deep:      #3E4E47;
-      --c-mid:       #6B7D74;
-      --c-text:      #2C2C2C;
-      --c-muted:     #7A7A72;
+      --c-mid:       #4E5F58;
+      --c-text:      #1E1E1E;
+      --c-muted:     #525250;
       --c-gold:      #B8A882;
       --c-gold-lt:   #D9CEBC;
       --c-white:     #FDFCF9;
@@ -49,7 +50,7 @@
       background-color: var(--c-bg);
       color: var(--c-text);
       font-family: var(--f-sans);
-      font-weight: 300;
+      font-weight: 400;
       font-size: 15px;
       line-height: 1.9;
       -webkit-font-smoothing: antialiased;
@@ -108,6 +109,15 @@
       font-size: 0.88rem;
       letter-spacing: 0.1em;
       color: var(--c-deep);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav__logo img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
     }
 
     .nav__cta {
@@ -1091,7 +1101,7 @@
 
   <!-- NAV -->
   <nav class="nav" aria-label="サイトナビゲーション">
-    <span class="nav__logo">こころパートナークリニック</span>
+    <span class="nav__logo"><img src="images/fabicon.png" alt="">こころパートナークリニック</span>
     <a href="#reserve" class="nav__cta">相談する</a>
   </nav>
 
