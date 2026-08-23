@@ -3,8 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3QCNF71B0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-E3QCNF71B0');
+  </script>
   <title>こころパートナークリニック｜精神科医によるオンライン自由診療</title>
-  <meta name="description" content="心の不調の最初の相談先。精神科医によるオンライン自由診療クリニックです。現在の状態を整理し、一人ひとりに合った整え方を一緒に考えます。" />
+  <meta name="description" content="心の不調の最初の相談先。精神科医と一緒に、今の状態とこれからの整え方を考えるオンラインクリニックです。" />
+  <link rel="canonical" href="https://kokoro-partner.jp/" />
+  <meta property="og:title" content="こころパートナークリニック｜精神科医によるオンライン自由診療" />
+  <meta property="og:description" content="心の不調の最初の相談先。精神科医と一緒に、今の状態とこれからの整え方を考えるオンラインクリニックです。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kokoro-partner.jp/" />
+  <meta property="og:image" content="https://kokoro-partner.jp/images/ogp.jpg" />
+  <meta property="og:image:width" content="1536" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:site_name" content="こころパートナークリニック" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="こころパートナークリニック｜精神科医によるオンライン自由診療" />
+  <meta name="twitter:description" content="心の不調の最初の相談先。精神科医と一緒に、今の状態とこれからの整え方を考えるオンラインクリニックです。" />
+  <meta name="twitter:image" content="https://kokoro-partner.jp/images/ogp.jpg" />
   <link rel="icon" type="image/png" href="images/fabicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1097,6 +1119,76 @@
         transition: none;
       }
     }
+
+    /* ===========================
+       FAQ
+    =========================== */
+    .faq {
+      background: var(--c-white);
+    }
+
+    .faq-list {
+      margin-top: var(--sp-lg);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--c-line);
+      padding: var(--sp-md) 0;
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid var(--c-line);
+    }
+
+    .faq-q {
+      font-family: var(--f-serif);
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--c-deep);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .faq-q::before {
+      content: 'Q';
+      position: absolute;
+      left: 0;
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--c-gold);
+    }
+
+    .faq-a {
+      font-size: 0.88rem;
+      color: var(--c-muted);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .faq-a::before {
+      content: 'A';
+      position: absolute;
+      left: 0;
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--c-mid);
+    }
+
+    .faq-note {
+      margin-top: var(--sp-lg);
+      font-size: 0.75rem;
+      color: var(--c-muted);
+      line-height: 2;
+      padding-top: var(--sp-md);
+      border-top: 1px solid var(--c-line);
+    }
   </style>
 </head>
 <body>
@@ -1377,6 +1469,69 @@
         <img src="images/consult.png" alt="">
       </div>
       </div>
+    </div>
+  </section>
+
+
+  <!-- ========= FAQ ========= -->
+  <section class="section faq" id="faq">
+    <div class="section__inner">
+      <span class="section-label reveal">FAQ</span>
+      <h2 class="section__heading reveal">よくあるご質問</h2>
+      <div class="divider reveal"></div>
+
+      <dl class="faq-list">
+
+        <div class="faq-item reveal">
+          <dt class="faq-q">保険診療は受けられますか？</dt>
+          <dd class="faq-a">当院は自由診療のオンライン精神科クリニックです。健康保険はご利用いただけません。</dd>
+        </div>
+
+        <div class="faq-item reveal">
+          <dt class="faq-q">全国どこからでも受診できますか？</dt>
+          <dd class="faq-a">はい。完全オンライン診療のため、日本全国から受診いただけます。</dd>
+        </div>
+
+        <div class="faq-item reveal">
+          <dt class="faq-q">薬は処方してもらえますか？</dt>
+          <dd class="faq-a">症状や状態に応じて、自由診療での処方を行うことが可能です。一方で、オンライン診療では法律や制度上処方できない薬剤もあります。診察のうえ、適切な治療をご提案します。</dd>
+        </div>
+
+        <div class="faq-item reveal">
+          <dt class="faq-q">診断書は発行できますか？</dt>
+          <dd class="faq-a">必要に応じて、休職診断書・復職診断書・通院証明書の発行に対応しています。各5,000円（税込）。</dd>
+        </div>
+
+        <div class="faq-item reveal">
+          <dt class="faq-q">発行できない書類はありますか？</dt>
+          <dd class="faq-a">現在は、精神障害者保健福祉手帳・自立支援医療・障害年金に関する診断書は発行しておりません。傷病手当金に関する書類については、現在運用を検討しております。</dd>
+        </div>
+
+        <div class="faq-item reveal">
+          <dt class="faq-q">カウンセリングやコーチングを受けていますが、相談できますか？</dt>
+          <dd class="faq-a">もちろんです。当院では精神科医が医療の視点から現在の状態を確認します。現在受けられているカウンセリングやコーチングも大切にしながら、必要に応じて医療的なサポートを組み合わせ、一人ひとりに合った整え方を一緒に考えていきます。</dd>
+        </div>
+
+        <div class="faq-item reveal">
+          <dt class="faq-q">一度受診したら通院を続ける必要がありますか？</dt>
+          <dd class="faq-a">いいえ。必要な期間だけご利用いただくことも可能です。初診のみで現在地を整理したい方や、一定期間だけ伴走をご希望の方もいらっしゃいます。</dd>
+        </div>
+
+        <div class="faq-item reveal">
+          <dt class="faq-q">病気かどうかわからず、まだ受診するほどではないと思っています。</dt>
+          <dd class="faq-a">もちろんご相談いただけます。「病気かどうか」を判断するだけでなく、今どのような状態なのか、どこに負荷がかかっているのかを整理することも精神科医の大切な役割です。「このまま走り続けていいのか相談したい」という方も、お気軽にご相談ください。</dd>
+        </div>
+
+      </dl>
+
+      <p class="faq-note reveal">
+        ※ 診断書・証明書の発行には診察が必要です。<br>
+        ※ 診断書は診察時点での診療内容および医学的判断に基づいて作成します。ご希望の内容や診断名等を記載することはできません。<br>
+        ※ 診断書は医師の医学的意見書であり、休職・復職等の最終的な判断は勤務先・学校等の規程に基づいて行われます。<br>
+        ※ 発行後の内容変更や修正は、医学的に必要と判断した場合を除き対応いたしかねます。<br>
+        ※ 患者様都合による再発行は、1通につき5,000円（税込）を申し受けます。
+      </p>
+
     </div>
   </section>
 
