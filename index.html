@@ -4,9 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- リンク先の設定：予約URLを変えるときは RESERVE_URL を書き換えてください（予約ボタン4か所＋追従ボタンに反映） -->
+<!-- リンク先の設定：予約ボタンのリンク先は site.js の RESERVE_URL で全ページ共通に設定しています -->
 <script>
-  var RESERVE_URL = "https://gmo-clinic-map.com/hospital/LaxGhQtRe6/treatment";
   var FOOTER_TOKUSHOHO_URL = "tokushoho.html";  /* 特定商取引法に基づく表示 */
   var FOOTER_PRIVACY_URL   = "privacy.html";  /* プライバシーポリシー */
 </script>
@@ -37,6 +36,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@700&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@700&amp;display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@700&amp;display=swap"></noscript>
+<link rel="stylesheet" href="site.css">
 <style>
 h1,h2,h3,b,.maru{font-family:'Zen Maru Gothic','Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic','Yu Gothic Medium',Meiryo,sans-serif}
 body{margin:0;background:#FFF9F4}
@@ -75,8 +75,6 @@ p{line-height:1.9}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;color:#A4471A;font-size:13px;font-weight:700;letter-spacing:.14em}
 .eyebrow::before,.eyebrow::after{content:"";width:22px;height:1px;background:currentColor;opacity:.6}
 /* 共通ヘッダーのナビ */
-header nav a{color:#3B3340}
-header nav a:hover{color:#C4500F}
 
 @media (max-width:720px){
   /* ファーストビューの料金：区切り線だけが残る崩れを解消し、2行をコンパクトに */
@@ -115,14 +113,6 @@ header nav a:hover{color:#C4500F}
   background:linear-gradient(90deg,#FFA046 0%,#F57A33 55%,#EA5A1F 100%);color:#fff;font-weight:700;font-size:17px;
   text-decoration:none;text-shadow:0 1px 2px rgba(140,45,0,.35);box-shadow:0 6px 16px rgba(234,90,31,.28)}
 @media (min-width:721px){.sticky-cta{display:none}}
-/* 極狭幅（320px等）でヘッダーが横にはみ出さないように */
-@media (max-width:360px){
-  .hdr{padding:10px 14px !important;gap:8px !important}
-  .hdr-logo{width:34px !important;height:34px !important;border-radius:12px !important}
-  .hdr-brand{font-size:15px !important}
-  .hdr-sub{font-size:10px !important}
-  .hdr-cta{font-size:13px !important;padding:8px 12px !important;min-height:40px !important}
-}
 @media (max-width:360px){
   .fv-photo{width:100% !important;max-width:300px;height:auto !important;aspect-ratio:300/380;box-sizing:border-box}
 }
@@ -328,22 +318,6 @@ header nav a:hover{color:#C4500F}
             "@type": "Answer",
             "text": "診察の結果、休養が医学的に必要と判断した場合は発行します。経過を見てから判断することもあります。"
           }
-        },
-        {
-          "@type": "Question",
-          "name": "うまく話せるか不安です",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "事前の問診で状況を伝えておけるので、診察では先生から質問していきます。メモを見ながらでも大丈夫です。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "今飲んでいる薬を続けられますか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "必ず同じお薬を続けられるとは限りません。お薬手帳などで内容を確認し、オンラインで安全に続けられるか先生が判断します。"
-          }
         }
       ]
     }
@@ -362,26 +336,41 @@ header nav a:hover{color:#C4500F}
 <body>
 <div style="font-family:'Noto Sans JP','Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic','Yu Gothic Medium',Meiryo,sans-serif;color:#3B3340;background:#FFF9F4;line-height:1.85;font-size:16px;font-weight:400;letter-spacing:.04em">
 
-<!-- Header -->
-<header style="position:sticky;top:0;z-index:10;background:rgba(255,249,244,0.92);backdrop-filter:blur(10px)">
-  <div class="hdr" style="box-sizing:content-box;max-width:1160px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px">
-    <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#3B3340">
-      <img class="hdr-logo" src="images/kokoropartner_logo.png" alt="こころパートナークリニック" width="40" height="40" style="width:40px;height:40px;border-radius:14px;display:block">
-      <span style="line-height:1.3">
-        <span class="hdr-brand" style="display:block;font-weight:700;font-size:17px;letter-spacing:.02em;white-space:nowrap">こころパートナー</span>
-        <span class="hdr-sub" style="display:block;font-size:11px;color:#6E6470;white-space:nowrap;letter-spacing:0">オンライン心療内科・精神科</span>
-      </span>
+<!--SITE-HEADER-->
+<header class="site-header">
+  <div class="site-header__in">
+    <a class="site-logo" href="index.html">
+      <img src="images/kokoropartner_logo.png" alt="" width="44" height="44">
+      <span class="site-logo__text"><span class="site-logo__name">こころパートナー</span><span class="site-logo__sub">オンライン心療内科・精神科</span></span>
     </a>
-    <nav class="hide-sm" style="display:flex;gap:22px;font-size:14px;font-weight:700">
-      <a href="#s-price" style="text-decoration:none;color:#3B3340">料金</a>
-      <a href="#s-flow" style="text-decoration:none;color:#3B3340">受診の流れ</a>
-      <a href="#s-docs" style="text-decoration:none;color:#3B3340">診断書</a>
-      <a href="#s-faq" style="text-decoration:none;color:#3B3340">よくある質問</a>
-      <a href="doctor.html" style="text-decoration:none;color:#3B3340">院長紹介</a>
+    <nav class="site-nav" aria-label="メインメニュー">
+      <a href="price.html">料金</a>
+      <a href="flow.html">ご利用の流れ</a>
+      <a href="documents.html">診断書</a>
+      <a href="faq.html">よくある質問</a>
+      <a href="doctor.html">院長紹介</a>
     </nav>
-    <a class="cta hdr-cta" href="#" data-reserve style="background:#fff;color:#A4471A;border:2px solid #EE6A20;text-decoration:none;font-weight:700;font-size:15px;padding:10px 20px;border-radius:999px;white-space:nowrap;min-height:44px;box-sizing:border-box;display:inline-flex;align-items:center">今すぐ予約</a>
+    <a class="btn-reserve site-header__cta" href="#" data-reserve><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 10h18"></path></svg>今すぐ予約</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="メニューを開く">
+      <svg class="i-open" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      <svg class="i-close" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      <span>MENU</span>
+    </button>
   </div>
+  <nav class="site-menu" id="site-menu" aria-label="メニュー" hidden>
+    <div class="site-menu__in">
+      <a class="site-menu__link" href="price.html">料金<span aria-hidden="true">›</span></a>
+      <a class="site-menu__link" href="flow.html">ご利用の流れ<span aria-hidden="true">›</span></a>
+      <a class="site-menu__link" href="documents.html">診断書・書類<span aria-hidden="true">›</span></a>
+      <a class="site-menu__link" href="faq.html">よくある質問<span aria-hidden="true">›</span></a>
+      <a class="site-menu__link" href="doctor.html">院長紹介<span aria-hidden="true">›</span></a>
+      <a class="site-menu__link site-menu__alert" href="flow.html#emergency">受診できない方・緊急時<span aria-hidden="true">›</span></a>
+      <a class="btn-reserve" href="#" data-reserve>今すぐ予約する</a>
+      <p class="site-menu__note">平日 20:30〜22:00・自由診療</p>
+    </div>
+  </nav>
 </header>
+<!--/SITE-HEADER-->
 
 <main>
 
@@ -480,22 +469,14 @@ header nav a:hover{color:#C4500F}
     <div style="background:#FFE3CF;border:2px solid #EE6A20;border-radius:28px;padding:26px;text-align:center"><div style="font-weight:700;color:#A4471A">はじめての診察（15分）</div><div style="font-size:46px;font-weight:700;line-height:1.2">5,500<span style="font-size:18px">円</span></div><div style="font-size:12px;color:#6E6470">税込</div></div>
     <div style="background:#fff;border-radius:28px;padding:26px;text-align:center"><div style="font-weight:700">2回目から（5分）</div><div style="font-size:46px;font-weight:700;line-height:1.2">3,300<span style="font-size:18px">円</span></div><div style="font-size:12px;color:#6E6470">税込</div></div>
   </div>
-  <div class="doc-fees" style="background:#fff;border-radius:28px;padding:22px 26px 18px">
-    <div style="margin-top:0">
-      <div style="font-weight:700;font-size:14px;color:#A4471A;letter-spacing:.08em;padding-bottom:6px;border-bottom:2px solid #FFE3CF">診断書</div>
-      <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:12px 0;border-bottom:2px dotted #F1E6DF"><span>当院書式（データ送付）</span><b style="white-space:nowrap">5,500円</b></div>
-      <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:12px 0;border-bottom:2px dotted #F1E6DF"><span>会社指定書式（データ送付）</span><b style="white-space:nowrap">8,800円</b></div>
-      <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:12px 0"><span>会社指定書式（手書き・送料込）</span><b style="white-space:nowrap">9,860円</b></div>
-    </div>
-    <div style="margin-top:18px">
-      <div style="font-weight:700;font-size:14px;color:#A4471A;letter-spacing:.08em;padding-bottom:6px;border-bottom:2px solid #FFE3CF">傷病手当金申請書</div>
-      <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:12px 0;border-bottom:2px dotted #F1E6DF"><span>データ対応</span><b style="white-space:nowrap">1,100円</b></div>
-      <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:12px 0"><span>原本対応（手書き・送料込）</span><b style="white-space:nowrap">3,850円</b></div>
-    </div>
-    <ul style="margin:16px 0 0;padding:14px 0 0;border-top:1px solid #F1E6DF;list-style:none;font-size:13px;color:#6E6470;line-height:1.75">
-      <li style="padding-left:1em;text-indent:-1em">※当院書式以外の各種書類については患者様ご自身でご用意をお願いしております。</li>
-      <li style="padding-left:1em;text-indent:-1em">※原本対応をご希望の場合は書類の郵送をお願いしています。</li>
-      <li style="padding-left:1em;text-indent:-1em">※レターパックをご希望の場合は+330円で対応させていただきます。</li>
+  <p style="margin:4px 0 0;text-align:center;font-size:15px;font-weight:700"><a href="price.html">料金の詳細はこちら →</a></p>
+  <div style="margin-top:14px;background:#fff;border-radius:22px;padding:16px 22px;font-size:14px;color:#5A4F5C"><b style="color:#3B3340">主なリスク・副作用</b>
+    <ul style="margin:6px 0 0;padding-left:1.3em;line-height:1.8">
+      <li>オンライン診療では、対面の診察に比べて得られる情報が限られます。血液検査などの検査も当院では行えません。</li>
+      <li>症状や経過によっては、対面の医療機関への受診をお願いすることがあります。</li>
+      <li>通信状況によっては、診察が中断したり、日を改めたりすることがあります。</li>
+      <li>お薬には、種類によって眠気、ふらつき、吐き気、頭痛などの副作用が出ることがあります。気になる症状があれば、自己判断でやめずにご相談ください。</li>
+      <li>麻薬・向精神薬は処方しません。ご希望のお薬を必ず出せるわけではありません。</li>
     </ul>
   </div>
   <div style="margin-top:14px;background:#FFF1E4;border-radius:22px;padding:16px 22px;font-size:14px;color:#5A4F5C"><b style="color:#3B3340">お薬について</b><br>お薬が必要な場合は、当院から連携するオンライン薬局へ処方箋を直接お送りします。服薬指導のあと、お薬はご自宅に届きます。自由診療のため、お薬代は保険が使えず全額自己負担（10割）となり、薬局にお支払いいただきます。</div>
@@ -533,7 +514,7 @@ header nav a:hover{color:#C4500F}
         <div style="padding:20px 20px 24px">
           <span style="display:inline-block;background:#FFF1E4;color:#A4471A;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px">はじめての方のみ</span>
           <h3 style="font-weight:700;font-size:19px;margin:8px 0 4px">会員登録</h3>
-          <p style="margin:0;font-size:14px;color:#5A4F5C;line-height:1.7">予約システムに会員登録します。2回目からはログインするだけでOK。</p>
+          <p style="margin:0;font-size:14px;color:#5A4F5C;line-height:1.7">予約システムに会員登録します。</p>
         </div>
       </li>
 
@@ -562,7 +543,7 @@ header nav a:hover{color:#C4500F}
         <div style="padding:20px 20px 24px">
           <span style="display:inline-block;background:#FFF1E4;color:#A4471A;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px">今夜の受診もOK</span>
           <h3 style="font-weight:700;font-size:19px;margin:8px 0 4px">日時を選んで予約</h3>
-          <p style="margin:0;font-size:14px;color:#5A4F5C;line-height:1.7">予約フォームから、希望の日時を選ぶだけ。今日の空きがあれば、今夜そのまま受診できます。</p>
+          <p style="margin:0;font-size:14px;color:#5A4F5C;line-height:1.7">空いている日時を選ぶだけ。</p>
         </div>
       </li>
 
@@ -605,7 +586,7 @@ header nav a:hover{color:#C4500F}
         <div style="padding:20px 20px 24px">
           <span style="display:inline-block;background:#FFF1E4;color:#A4471A;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px">選択式でかんたん</span>
           <h3 style="font-weight:700;font-size:19px;margin:8px 0 4px">問診に答える</h3>
-          <p style="margin:0;font-size:14px;color:#5A4F5C;line-height:1.7">今の体調や飲んでいるお薬を、選択式中心でかんたん入力。うまく話せるか不安な方も、先に伝えておけます。</p>
+          <p style="margin:0;font-size:14px;color:#5A4F5C;line-height:1.7">今の体調などを、かんたんに入力します。</p>
         </div>
       </li>
 
@@ -663,7 +644,7 @@ header nav a:hover{color:#C4500F}
         <div style="padding:20px 20px 24px">
           <span style="display:inline-block;background:#FFF1E4;color:#A4471A;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px">初診15分・再診5分</span>
           <h3 style="font-weight:700;font-size:19px;margin:8px 0 4px">スマホで医師と診察</h3>
-          <p style="margin:0;font-size:14px;color:#5A4F5C;line-height:1.7">予約の時間になったら、自宅など落ち着いて話せる場所からビデオ通話でつなぐだけ。毎回同じ先生が診ます。</p>
+          <p style="margin:0;font-size:14px;color:#5A4F5C;line-height:1.7">ビデオ通話で、毎回同じ先生が診ます。</p>
         </div>
       </li>
 
@@ -702,11 +683,11 @@ header nav a:hover{color:#C4500F}
         <div style="padding:20px 20px 24px">
           <span style="display:inline-block;background:#FFF1E4;color:#A4471A;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px">おうちに届く</span>
           <h3 style="font-weight:700;font-size:19px;margin:8px 0 4px">お薬はおうちで受け取り</h3>
-          <p style="margin:0;font-size:14px;color:#5A4F5C;line-height:1.7">オンライン薬局で薬剤師の服薬指導を受けたら、あとはお薬が届くのを待つだけ。</p>
-          <p style="margin:8px 0 0;font-size:12px;color:#6E6470;line-height:1.6">※処方箋は当院から連携する薬局へ直接お送りするため、お手元には届きません。</p>
+          <p style="margin:0;font-size:14px;color:#5A4F5C;line-height:1.7">服薬指導のあと、お薬がご自宅に届きます。</p>
         </div>
       </li>
     </ol>
+    <p style="text-align:center;margin:20px 0 0;font-size:15px;font-weight:700"><a href="flow.html">ご利用の流れを詳しく見る →</a></p>
 
     <div style="text-align:center;margin-top:36px">
       <a class="cta" href="#" data-reserve style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,#FFA046 0%,#F57A33 55%,#EA5A1F 100%);color:#fff;text-shadow:0 1px 2px rgba(140,45,0,0.35);text-decoration:none;font-weight:700;font-size:19px;padding:18px 36px;border-radius:999px;box-shadow:0 8px 22px rgba(234,90,31,0.30);transition:all .15s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"></rect><path d="M8 3v4M16 3v4M3.5 10h17"></path></svg>今すぐ予約する<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a>
@@ -722,6 +703,7 @@ header nav a:hover{color:#C4500F}
       <h2 class="h2" style="font-size:26px;font-weight:700;margin:12px 0 12px;line-height:1.5">休職・復職・傷病手当金の<br>書類も相談できます</h2>
       <p style="margin:0 0 10px;color:#5A4F5C">診察の結果、医学的に必要と判断した場合に発行します。発行するときは、基本当日〜24時間以内にデータでお渡しします。</p>
       <p style="margin:0;color:#6E6470;font-size:13px">※ご希望の内容・期間どおりに出せるとは限りません。傷病手当金の支給可否は加入している健康保険が判断します。</p>
+      <p style="margin:16px 0 0;font-size:15px;font-weight:700"><a href="documents.html">診断書・書類について詳しく見る →</a></p>
     </div>
     <div style="flex:1 1 360px;min-width:0;display:grid;gap:10px">
       <div style="background:#FFF9F4;border-radius:20px;padding:18px 20px"><b style="font-size:17px">休職の診断書</b><div style="font-size:14px;color:#5A4F5C">休養が必要かを先生が判断します</div></div>
@@ -788,8 +770,7 @@ header nav a:hover{color:#C4500F}
       <details style="background:#FFF9F4;border-radius:22px;padding:6px 22px"><summary style="display:flex;justify-content:space-between;gap:16px;font-weight:700;font-size:16px;min-height:52px;align-items:center">家族や会社にバレませんか？<span class="faq-plus" style="font-size:24px;color:#EE6A20;transition:transform .2s">+</span></summary><p style="margin:0 0 16px;color:#5A4F5C">当院は自由診療のため、健康保険の「医療費のお知らせ」に当院の受診情報が載ることはありません。<br>ご家族にも話しづらく、ご自宅でのお薬の受け取りが心配な場合は、配送先について薬局にご相談いただくのも一つの方法です。</p></details>
       <details style="background:#FFF9F4;border-radius:22px;padding:6px 22px"><summary style="display:flex;justify-content:space-between;gap:16px;font-weight:700;font-size:16px;min-height:52px;align-items:center">保険は使えますか？<span class="faq-plus" style="font-size:24px;color:#EE6A20;transition:transform .2s">+</span></summary><p style="margin:0 0 16px;color:#5A4F5C">自由診療のため保険は使えません。そのぶん料金は事前に明示し、追加の予約料などはかかりません。</p></details>
       <details style="background:#FFF9F4;border-radius:22px;padding:6px 22px"><summary style="display:flex;justify-content:space-between;gap:16px;font-weight:700;font-size:16px;min-height:52px;align-items:center">はじめてでも診断書はもらえますか？<span class="faq-plus" style="font-size:24px;color:#EE6A20;transition:transform .2s">+</span></summary><p style="margin:0 0 16px;color:#5A4F5C">診察の結果、休養が医学的に必要と判断した場合は発行します。経過を見てから判断することもあります。</p></details>
-      <details style="background:#FFF9F4;border-radius:22px;padding:6px 22px"><summary style="display:flex;justify-content:space-between;gap:16px;font-weight:700;font-size:16px;min-height:52px;align-items:center">うまく話せるか不安です<span class="faq-plus" style="font-size:24px;color:#EE6A20;transition:transform .2s">+</span></summary><p style="margin:0 0 16px;color:#5A4F5C">事前の問診で状況を伝えておけるので、診察では先生から質問していきます。メモを見ながらでも大丈夫です。</p></details>
-      <details style="background:#FFF9F4;border-radius:22px;padding:6px 22px"><summary style="display:flex;justify-content:space-between;gap:16px;font-weight:700;font-size:16px;min-height:52px;align-items:center">今飲んでいる薬を続けられますか？<span class="faq-plus" style="font-size:24px;color:#EE6A20;transition:transform .2s">+</span></summary><p style="margin:0 0 16px;color:#5A4F5C">必ず同じお薬を続けられるとは限りません。お薬手帳などで内容を確認し、オンラインで安全に続けられるか先生が判断します。</p></details>
+      <p style="text-align:center;margin:14px 0 0;font-size:15px;font-weight:700"><a href="faq.html">よくある質問をもっと見る →</a></p>
     </div>
   </div>
 </section>
@@ -819,6 +800,12 @@ header nav a:hover{color:#C4500F}
       <div>オンライン診療基準および厚生労働省「オンライン診療の適切な実施に関する指針」を遵守してオンライン診療を実施しています。担当医師は厚生労働省が指定するオンライン診療に係る研修を修了しています。</div>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start">
+      <a href="flow.html" style="color:#6E6470">ご利用の流れ</a>
+      <a href="price.html" style="color:#6E6470">料金</a>
+      <a href="documents.html" style="color:#6E6470">診断書・書類</a>
+      <a href="faq.html" style="color:#6E6470">よくある質問</a>
+      <a href="doctor.html" style="color:#6E6470">院長紹介</a>
+      <a href="flow.html#emergency" style="color:#6E6470">受診できない方・緊急時</a>
       <a href="#" data-footer-link="tokushoho" style="color:#6E6470">特定商取引法に基づく表示</a>
       <a href="#" data-footer-link="privacy" style="color:#6E6470">プライバシーポリシー</a>
     </div>
@@ -830,6 +817,7 @@ header nav a:hover{color:#C4500F}
   <a href="#" data-reserve>今すぐ予約する</a>
 </div>
 
+<script src="site.js"></script>
 <script>
   /* 上の設定値を各リンクに反映します（href は "#" を初期値として持たせてあります） */
   (function () {
@@ -838,7 +826,6 @@ header nav a:hover{color:#C4500F}
       var nodes = document.querySelectorAll(sel);
       for (var i = 0; i < nodes.length; i++) nodes[i].setAttribute("href", url);
     };
-    set("a[data-reserve]", RESERVE_URL);
     set('a[data-footer-link="tokushoho"]', FOOTER_TOKUSHOHO_URL);
     set('a[data-footer-link="privacy"]', FOOTER_PRIVACY_URL);
   })();

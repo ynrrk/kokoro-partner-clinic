@@ -1,0 +1,142 @@
+/* 全ページ共通の部品（ヘッダー・スマホメニュー・見出し帯・予約帯・スマホ下部の予約バー）
+   トップページ（index.html）の本文には影響しないよう、クラス名をつけた要素だけに効かせています。
+   ヘッダーのHTMLは _source/build.py が各ページに書き込みます。 */
+:root{
+  --c-ink:#3B3340;        /* 見出し・強調 */
+  --c-text:#5A4F5C;       /* 本文・補足 */
+  --c-accent:#A4471A;     /* リンク・小見出し */
+  --c-orange:#EA5A1F;     /* アイコン・下線 */
+  --c-orange-deep:#C4500F;/* 白文字をのせるオレンジ（STEP番号など。白との差 4.5:1 以上） */
+  --c-bg:#FFF9F4;         /* ページ地 */
+  --c-peach:#FFEBDD;      /* 見出し帯・末尾予約帯・アイコン背景 */
+  --c-line:#F3DCCB;       /* 罫線 */
+  --c-photo:#F6E7DA;      /* 画像読込前の背景 */
+  --c-alert-bg:#FDECEC;--c-alert:#C0392B;--c-alert-text:#9B2C20;
+  --grad-cta:linear-gradient(90deg,#F5873A,#E0541C);
+  --radius-card:16px;--radius-lg:20px;--radius-pill:999px;
+  --w-text:720px;--w-content:960px;--w-header:1200px;
+  --font:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  --hh:88px;              /* ヘッダーの高さ */
+}
+@media (max-width:767px){:root{--hh:64px}}
+/* ページ内リンクで飛んだ見出しが、追従するヘッダーに隠れないように */
+html{scroll-padding-top:calc(var(--hh) + 12px)}
+
+/* ===== 予約ボタン ===== */
+.btn-reserve{display:inline-flex;align-items:center;justify-content:center;gap:10px;box-sizing:border-box;
+  border-radius:var(--radius-pill);background:var(--grad-cta);color:#fff !important;font-family:var(--font);
+  font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:0 6px 16px rgba(224,84,28,.25);
+  transition:transform .15s ease,box-shadow .15s ease}
+.btn-reserve:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(224,84,28,.32)}
+.btn-reserve svg{flex:0 0 auto}
+
+/* ===== ヘッダー ===== */
+.site-header{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--c-line);
+  font-family:var(--font);letter-spacing:.02em;color:var(--c-ink)}
+.site-header__in{box-sizing:border-box;max-width:var(--w-header);margin:0 auto;padding:0 32px;height:calc(var(--hh) - 1px);
+  display:flex;align-items:center;justify-content:space-between;gap:24px}
+.site-logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--c-ink) !important;min-width:0}
+.site-logo img{width:44px;height:44px;border-radius:12px;display:block;flex:0 0 auto}
+.site-logo__text{display:flex;flex-direction:column;gap:2px;line-height:1.2;white-space:nowrap}
+.site-logo__name{font-size:20px;font-weight:700}
+.site-logo__sub{font-size:12px;color:var(--c-text);letter-spacing:0}
+.site-nav{display:flex;align-items:center;gap:32px}
+.site-nav a{font-size:15px;font-weight:700;color:var(--c-ink);text-decoration:none;padding:8px 0;
+  border-bottom:3px solid transparent;white-space:nowrap}
+.site-nav a:hover{color:var(--c-accent)}
+.site-nav a[aria-current]{color:var(--c-accent);border-bottom-color:var(--c-orange)}
+.site-header__cta{height:52px;padding:0 28px;font-size:16px;gap:8px;box-shadow:0 4px 12px rgba(224,84,28,.25)}
+.menu-btn{display:none;flex:0 0 auto;width:48px;height:48px;border:0;border-radius:12px;background:var(--c-peach);
+  color:var(--c-accent);cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  font-family:var(--font);padding:0}
+.menu-btn span{font-size:9px;font-weight:700;line-height:1;letter-spacing:.04em}
+.menu-btn .i-close{display:none}
+.menu-btn[aria-expanded="true"] .i-open{display:none}
+.menu-btn[aria-expanded="true"] .i-close{display:block}
+
+/* ===== スマホ・タブレットのメニュー ===== */
+.site-menu{display:none}
+.site-menu__in{max-width:560px;margin:0 auto;display:flex;flex-direction:column}
+.site-menu a.site-menu__link{display:flex;justify-content:space-between;align-items:center;min-height:56px;
+  border-bottom:1px solid var(--c-line);font-size:16px;font-weight:700;color:var(--c-ink);text-decoration:none}
+.site-menu a.site-menu__link span{color:var(--c-accent)}
+.site-menu a.site-menu__link[aria-current]{color:var(--c-accent)}
+.site-menu a.site-menu__alert{border-bottom:0;font-size:15px;color:var(--c-alert-text)}
+.site-menu a.site-menu__alert span{color:var(--c-alert-text)}
+.site-menu .btn-reserve{margin-top:24px;height:56px;font-size:17px}
+.site-menu__note{margin:8px 0 0;text-align:center;font-size:12px;color:var(--c-text)}
+
+/* タブレット（768〜1023px）：メニューが1行に収まらないので、メニューボタンに切り替える（予約ボタンは残す） */
+@media (max-width:1023px){
+  .site-header__in{padding:0 20px;gap:16px}
+  .site-nav{display:none}
+  .menu-btn{display:flex}
+  .site-header__cta{margin-left:auto}
+  .site-menu:not([hidden]){display:block;position:fixed;top:var(--hh);left:0;right:0;bottom:0;background:#fff;
+    overflow-y:auto;overscroll-behavior:contain;padding:8px 20px 24px;z-index:30}
+  body.menu-open{overflow:hidden}
+}
+/* スマホ（〜767px） */
+@media (max-width:767px){
+  .site-header__in{padding:0 12px 0 16px}
+  .site-header__cta{display:none}
+  .site-logo{gap:8px}
+  .site-logo img{width:36px;height:36px;border-radius:10px}
+  .site-logo__name{font-size:17px}
+  .site-logo__sub{font-size:11px}
+}
+
+/* ===== 見出し帯（各下層ページの先頭） ===== */
+.page-hero{background:var(--c-peach);padding:40px 32px 56px}
+.page-hero__in{max-width:var(--w-content);margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.page-hero .crumb{display:flex;flex-wrap:wrap;gap:4px 8px;margin:0;font-size:13px;line-height:1.6;color:var(--c-text)}
+.page-hero .crumb a{color:var(--c-accent)}
+.page-hero h1{margin:0;font-size:36px;line-height:1.4;font-weight:700;color:var(--c-ink)}
+.page-hero .lead{margin:0;max-width:680px;font-size:17px;line-height:1.8;color:var(--c-text)}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin:0;padding:0;list-style:none}
+.chips li{margin:0;background:#fff;border-radius:var(--radius-pill);padding:8px 16px;font-size:14px;font-weight:700;
+  line-height:1.5;color:var(--c-ink)}
+.hero-cta{display:flex;align-items:center;gap:12px 20px;flex-wrap:wrap;margin-top:8px}
+.hero-cta .btn-reserve{height:60px;padding:0 40px;font-size:18px}
+.hero-cta small{font-size:13px;color:var(--c-text)}
+@media (max-width:767px){
+  .page-hero{padding:20px 20px 28px}
+  .page-hero__in{gap:12px}
+  .page-hero .crumb{font-size:12px}
+  .page-hero h1{font-size:26px}
+  .page-hero .lead{font-size:15px}
+  .chips{gap:8px}
+  .chips li{padding:6px 12px;font-size:12px}
+  .hero-cta .btn-reserve{width:100%;height:56px;font-size:17px}
+}
+
+/* ===== ページ末尾の予約帯 ===== */
+.reserve-band{background:var(--c-peach);padding:72px 32px;text-align:center;font-family:var(--font)}
+.reserve-band__in{max-width:var(--w-text);margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:16px}
+.reserve-band h2{margin:0;padding:0;border:0;font-size:26px;line-height:1.5;color:var(--c-ink)}
+.reserve-band p{margin:0;font-size:16px;line-height:1.8;color:var(--c-text)}
+.reserve-band .btn-reserve{height:64px;padding:0 56px;font-size:19px;margin-top:8px}
+.reserve-band small{font-size:13px;color:var(--c-text)}
+@media (max-width:767px){
+  .reserve-band{padding:56px 20px}
+  .reserve-band h2{font-size:22px}
+  .reserve-band p{font-size:15px}
+  .reserve-band .btn-reserve{width:100%;max-width:360px;padding:0 24px;height:60px;font-size:18px}
+}
+
+/* ===== スマホ下部に固定する予約バー（〜767px） ===== */
+.reserve-bar{display:none}
+@media (max-width:767px){
+  .reserve-bar{display:flex;flex-direction:column;align-items:center;gap:4px;position:fixed;left:0;right:0;bottom:0;z-index:20;
+    background:#fff;border-top:1px solid var(--c-line);box-shadow:0 -4px 12px rgba(59,51,64,.06);
+    padding:10px 16px calc(12px + env(safe-area-inset-bottom));font-family:var(--font)}
+  .reserve-bar .btn-reserve{width:100%;height:52px;font-size:17px;box-shadow:none}
+  .reserve-bar .btn-reserve:hover{transform:none}
+  .reserve-bar small{font-size:11px;color:var(--c-text);letter-spacing:.02em}
+  body.has-reserve-bar{padding-bottom:calc(104px + env(safe-area-inset-bottom))}
+  body.menu-open .reserve-bar{display:none}
+}
+
+/* ===== 開閉（アコーディオン）共通 ===== */
+details > summary{cursor:pointer;list-style:none}
+details > summary::-webkit-details-marker{display:none}

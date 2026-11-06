@@ -1,0 +1,290 @@
+/* こころパートナー 広告用LP（夜のネイビー版）
+   スマホを基本に書き、768px以上でPC向けに組み替えています。 */
+:root{
+  /* 夜のネイビー（ファーストビュー・予約帯・ヘッダー） */
+  --n-bg:#24233F;        /* 背景 */
+  --n-raise:#3A3860;     /* ロゴ背景・罫線 */
+  --n-photo:#4A4668;     /* 写真読込前の背景 */
+  --n-line:#8C88B8;      /* ラベルの枠線 */
+  --n-sub:#D8D6EC;       /* ネイビー上の補足文字 */
+  --n-accent:#FFB58A;    /* ネイビー上の強調（「女性の精神科医」・月アイコン） */
+  /* 明るいセクション（2画面目以降） */
+  --c-ink:#3B3340; --c-text:#5A4F5C; --c-accent:#A4471A;
+  --c-orange-deep:#C9470F;   /* 番号・チェック・Qバッジ（白文字との差 4.5:1 以上） */
+  --c-bg:#FFF9F4; --c-peach:#FFEBDD; --c-line:#F3DCCB;
+  --c-alert-bg:#FDECEC; --c-alert:#C0392B; --c-alert-text:#9B2C20;
+  /* 予約ボタン */
+  --grad-cta:linear-gradient(90deg,#E8611F,#C9470F);
+  --font:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  --font-head:"Zen Maru Gothic","Noto Sans JP",sans-serif;  /* 見出しのみ */
+  --hh:52px;
+}
+@media (min-width:768px){:root{--hh:80px}}
+
+*{box-sizing:border-box}
+html{scroll-padding-top:var(--hh)}
+body{margin:0;background:var(--c-bg);color:var(--c-ink);font-family:var(--font);font-size:15px;line-height:1.8;letter-spacing:.02em;
+  -webkit-text-size-adjust:100%}
+body.has-sticky{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+a{color:var(--c-accent)}
+a:hover{color:#7A3210}
+img{max-width:100%}
+h1,h2,h3,p,ul,ol,dl,dd{margin:0}
+.pc-only{display:none}
+
+/* ===== 予約ボタン ===== */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;background:var(--grad-cta);color:#fff;
+  font-weight:700;text-decoration:none;white-space:nowrap;transition:transform .15s ease,box-shadow .15s ease}
+.btn:hover{color:#fff;transform:translateY(-2px)}
+.btn--main{height:64px;padding:0 28px;font-size:19px;box-shadow:0 6px 16px rgba(201,71,15,.3)}
+.btn--hdr{height:38px;padding:0 14px;font-size:13px}
+.btn--sticky{flex:1;height:52px;padding:0 12px;font-size:16px}
+.btn--sticky:hover{transform:none}
+/* 「今夜の」は lp.js が平日22時前と判定したときだけ表示（初期値は「空き枠を見る」） */
+.tonight{display:none}
+.is-tonight .tonight{display:inline}
+.cta-wrap{display:flex;flex-direction:column;align-items:stretch;gap:6px}
+.cta-note{font-size:11px;line-height:1.5;text-align:center;color:var(--n-sub)}
+
+/* ===== ヘッダー（追従） ===== */
+.hdr{position:sticky;top:0;z-index:20;background:var(--n-bg);border-bottom:1px solid var(--n-raise)}
+.hdr__in{height:calc(var(--hh) - 1px);max-width:1440px;margin:0 auto;padding:0 12px 0 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:8px;min-width:0}
+.logo img{width:30px;height:30px;border-radius:9px;display:block;flex:0 0 auto}
+.logo__text{display:flex;flex-direction:column;white-space:nowrap}
+.logo__name{font-size:14px;font-weight:700;line-height:1.2;color:#fff}
+.logo__sub{font-size:10px;line-height:1.4;color:var(--n-sub);letter-spacing:0}
+/* スマホのヘッダーは短く「空き枠を見る」のまま */
+.btn--hdr .tonight{display:none !important}
+/* 押せる範囲を44px以上に（見た目は38px） */
+.btn--hdr{position:relative}
+.btn--hdr::after{content:"";position:absolute;inset:-4px -2px}
+
+/* ===== ファーストビュー ===== */
+.fv{background:var(--n-bg);color:#fff}
+.fv__in{padding:12px 20px 28px}
+.fv__text{display:flex;flex-direction:column;gap:14px}
+.fv__time{display:flex;align-items:baseline;gap:10px;line-height:1}
+.fv__time svg{align-self:center;flex:0 0 auto}
+.fv__time-label{font-size:13px;font-weight:700;color:var(--n-accent);white-space:nowrap}
+.fv__time-num{font-size:40px;font-weight:900;letter-spacing:.01em;white-space:nowrap}
+.fv__time-num small{font-size:20px;font-weight:700}
+.fv h1{font-family:var(--font-head);font-size:31px;line-height:1.45;font-weight:900;letter-spacing:.02em}
+.fv h1 em{font-style:normal;color:var(--n-accent)}
+.fv__photo{position:relative;margin-top:4px;height:270px}
+.fv__photo picture,.fv__photo img{display:block;width:100%;height:100%}
+.fv__photo img{object-fit:cover;object-position:30% 40%;border-radius:24px;background:var(--n-photo)}
+.fv__badge{position:absolute;right:-6px;top:-10px;background:#fff;color:var(--c-orange-deep);border-radius:999px;padding:8px 14px;
+  font-size:13px;font-weight:900;line-height:1.3;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.fv__caption{position:absolute;left:12px;bottom:10px;font-size:10px;line-height:1.3;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.fv__labels{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.fv__labels li{border:1.5px solid var(--n-line);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;line-height:1.4}
+.fv__cta{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.fv__cta .btn{height:62px}
+.fv__price{font-size:11px;line-height:1.6;text-align:center;color:var(--n-sub)}
+.fv__price strong{font-weight:400}
+.fv__note{font-size:10px;line-height:1.5;color:var(--n-sub)}
+
+/* ===== 明るいセクション共通 ===== */
+.sec{padding:40px 20px}
+.sec--cream{background:var(--c-bg)}
+.sec--white{background:#fff}
+.sec__in{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.sec h2{font-family:var(--font-head);font-size:22px;line-height:1.5;font-weight:700;text-align:center}
+.small{font-size:12px;line-height:1.7;color:var(--c-text)}
+
+/* お悩み */
+.worry{display:flex;flex-direction:column;gap:16px}
+.checks{list-style:none;padding:20px;background:#fff;border-radius:18px;display:flex;flex-direction:column;gap:14px}
+.checks li{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.6}
+.checks svg{flex:0 0 auto;margin-top:2px}
+.worry__close{font-size:15px;line-height:1.8;text-align:center;color:var(--c-text)}
+
+/* 4つの特長 */
+.sec--white .sec__in{gap:20px}
+.features{display:flex;flex-direction:column;gap:20px}
+.feature{background:var(--c-bg);border-radius:18px;padding:22px 20px;display:flex;flex-direction:column;gap:10px}
+.feature__num{font-family:var(--font-head);font-size:28px;font-weight:700;line-height:1;color:var(--c-orange-deep)}
+.feature h3{font-size:19px;line-height:1.5}
+.feature p{font-size:14px;line-height:1.8;color:var(--c-text)}
+.feature .small{font-size:11px;line-height:1.6}
+.doc-tags{list-style:none;padding:0;margin-top:4px;display:flex;flex-wrap:wrap;gap:6px}
+.doc-tags li{background:#fff;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700;line-height:1.5}
+.doc-tags--cream{margin-top:0}
+.doc-tags--cream li{background:var(--c-bg)}
+
+/* 予約帯 */
+.band{background:var(--n-bg);color:#fff;padding:28px 20px}
+.band__in{max-width:960px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.band__in .cta-wrap{width:100%}
+.band__lead{font-size:15px;font-weight:700}
+.band--final{padding:40px 20px 32px}
+.band--final .band__in{gap:12px}
+.band--final h2{font-family:var(--font-head);font-size:22px;line-height:1.5;font-weight:700}
+.band__sub{font-size:14px;line-height:1.8;color:var(--n-sub)}
+
+/* 担当する医師 */
+.sec__in--narrow{gap:18px}
+.doctor{background:#fff;border-radius:20px;padding:24px 20px;display:flex;flex-direction:column;gap:16px}
+.doctor__head{display:flex;gap:16px;align-items:center}
+.doctor__photo{flex:0 0 96px;width:96px;height:96px;border-radius:999px;object-fit:cover;object-position:50% 18%;background:#F6E7DA;display:block}
+.doctor__name{display:flex;flex-direction:column;gap:4px;line-height:1.4}
+.doctor__role{font-size:12px;font-weight:700;color:var(--c-accent)}
+.doctor__full{font-size:20px;font-weight:700}
+.doctor__full small{font-size:13px;font-weight:500}
+.doctor__dept{font-size:12px;color:var(--c-text)}
+.doctor__msg{font-size:15px;line-height:1.9;border-top:1px solid var(--c-line);padding-top:16px}
+.doctor__msg2{font-size:15px;line-height:1.9;color:var(--c-text)}
+.doctor__more{align-self:flex-end;font-size:13px;font-weight:700;padding:10px 0}
+
+/* 料金 */
+.price{display:flex;flex-direction:column;gap:16px}
+.price__tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-content:start}
+.price__tile{background:var(--c-bg);border:2px solid transparent;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:2px;align-items:center}
+.price__tile.is-main{background:#fff;border-color:#E8611F}
+.price__label{font-size:12px;font-weight:700;color:var(--c-text)}
+.is-main .price__label{color:var(--c-accent)}
+.price__num{font-size:28px;font-weight:700;line-height:1.4}
+.price__num small{font-size:13px}
+.price__side{display:flex;flex-direction:column;gap:16px}
+.price__list{background:var(--c-bg);border-radius:14px;padding:6px 16px}
+.price__list div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--c-line);font-size:14px}
+.price__list div:last-child{border-bottom:0}
+.price__list dd{font-weight:700;white-space:nowrap}
+
+/* 受診までの流れ */
+.flow{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px}
+.flow li{background:#fff;border-radius:14px;padding:14px 16px;display:flex;gap:14px;align-items:center}
+.flow__num{flex:0 0 auto;width:34px;height:34px;border-radius:999px;background:var(--c-orange-deep);color:#fff;font-weight:700;
+  display:flex;align-items:center;justify-content:center}
+.flow__text{display:flex;flex-direction:column;gap:2px;line-height:1.5}
+.flow__text b{font-size:15px}
+.flow__text span{font-size:12px;color:var(--c-text)}
+
+/* よくある質問 */
+.sec__in--faq{max-width:720px;gap:12px}
+.sec__in--faq h2{margin-bottom:4px}
+.faq{background:var(--c-bg);border-radius:14px;padding:0 16px}
+.faq summary{min-height:56px;padding:8px 0;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;line-height:1.5;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq__q{flex:0 0 auto;width:26px;height:26px;border-radius:999px;background:var(--c-orange-deep);color:#fff;font-size:12px;
+  display:flex;align-items:center;justify-content:center}
+.faq__text{flex:1}
+.faq__pm{flex:0 0 auto;color:var(--c-accent)}
+.faq__pm::after{content:"＋"}
+.faq[open] .faq__pm::after{content:"－"}
+.faq p{padding:0 0 16px 36px;font-size:14px;line-height:1.8;color:var(--c-text)}
+
+/* ご受診前にご確認ください */
+.sec--notice{padding:36px 20px}
+.notice{gap:14px}
+.alert{background:var(--c-alert-bg);border:2px solid var(--c-alert);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.alert__title{font-size:15px;font-weight:700;line-height:1.6;color:var(--c-alert-text)}
+.alert__title a{color:var(--c-alert-text)}
+.alert p:not(.alert__title){font-size:13px;line-height:1.7;color:var(--c-text)}
+.confirm{background:#fff;border-radius:14px;padding:18px 16px;display:flex;flex-direction:column;gap:10px}
+.sec .confirm h2{font-family:var(--font);font-size:15px;line-height:1.5;text-align:left}
+.confirm h3{margin-top:6px;font-size:14px;line-height:1.5}
+.confirm ul{padding-left:18px;font-size:13px;line-height:1.8;color:var(--c-text)}
+
+/* フッター */
+.ft{background:#fff}
+.ft__in{max-width:960px;margin:0 auto;padding:24px 20px 32px;display:flex;flex-direction:column;gap:10px;font-size:12px;color:var(--c-text)}
+.ft__name{font-weight:700;color:var(--c-ink)}
+.ft__in a{overflow-wrap:anywhere}
+.ft__links{display:flex;gap:4px 14px;flex-wrap:wrap}
+.ft__links a{display:inline-block;padding:6px 0}
+
+/* 画面下の固定予約バー（スマホのみ） */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.97);border-top:1px solid var(--c-line);
+  padding:10px 14px calc(16px + env(safe-area-inset-bottom));display:flex;gap:10px;align-items:center;box-shadow:0 -4px 12px rgba(59,51,64,.08);
+  transform:translateY(110%);visibility:hidden;transition:transform .25s ease,visibility 0s linear .25s}
+.sticky.is-show{transform:none;visibility:visible;transition:transform .25s ease}
+.sticky__time{display:flex;flex-direction:column;flex:0 0 auto;line-height:1.4}
+.sticky__time span{font-size:11px;color:var(--c-text)}
+.sticky__time b{font-size:14px}
+
+/* ===== PC（768px以上） ===== */
+@media (min-width:768px){
+  .pc-only{display:list-item}
+  body.has-sticky{padding-bottom:0}
+  .sticky{display:none}
+
+  .hdr__in{padding:0 40px}
+  .logo{gap:12px}
+  .logo img{width:44px;height:44px;border-radius:12px}
+  .logo__name{font-size:20px}
+  .logo__sub{font-size:12px}
+  .btn--hdr{height:52px;padding:0 28px;font-size:16px}
+  .btn--hdr .tonight{display:none !important}
+  .is-tonight .btn--hdr .tonight{display:inline !important}
+  .btn--hdr::after{content:none}
+
+  .fv__in{max-width:1440px;margin:0 auto;padding:56px 40px 72px}
+  .fv__text{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);column-gap:40px;row-gap:24px;align-items:start}
+  .fv__text > *{grid-column:1}
+  .fv__photo{grid-column:2;grid-row:1 / span 6;align-self:center;height:auto;aspect-ratio:520/620;margin:0}
+  .fv__photo img{object-position:40% 55%;border-radius:32px}
+  .fv__badge{right:-14px;top:-16px;padding:12px 20px;font-size:17px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+  .fv__caption{left:18px;bottom:14px;font-size:11px}
+  .fv__time{gap:14px}
+  .fv__time svg{width:30px;height:30px}
+  .fv__time-label{font-size:16px}
+  .fv__time-num{font-size:clamp(40px,4.45vw,64px)}
+  .fv__time-num small{font-size:clamp(20px,2.1vw,30px)}
+  .fv h1{font-size:clamp(30px,3.75vw,54px);line-height:1.4}
+  .fv__labels{gap:10px}
+  .fv__labels li{padding:8px 16px;font-size:15px}
+  .fv__cta{flex-direction:row;align-items:center;flex-wrap:wrap;gap:12px 24px;margin-top:0}
+  .fv__cta .btn{height:68px;padding:0 48px;font-size:20px;box-shadow:0 8px 22px rgba(232,97,31,.35)}
+  .fv__cta .cta-note{text-align:left}
+  .fv__price{font-size:13px;text-align:left}
+  .fv__price strong{font-size:18px;font-weight:700;color:#fff;margin:0 2px}
+  .fv__note{font-size:12px}
+
+  .sec{padding:80px 40px}
+  .sec__in{gap:28px}
+  .sec h2{font-size:28px}
+  .sec h2 br{display:none}
+
+  .worry{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:40px;align-items:center}
+  .checks{padding:28px 32px}
+  .worry__close{font-size:18px;line-height:1.9;text-align:left;font-weight:700;color:var(--c-ink)}
+
+  .features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .feature{padding:28px}
+  .feature h3{font-size:20px}
+
+  .band{padding:48px 40px}
+  .band__in .cta-wrap{width:auto}
+  .band .btn--main{padding:0 56px;height:68px;font-size:20px}
+  .band__lead{font-size:18px}
+  .band--final{padding:72px 40px 64px}
+  .band--final h2{font-size:28px}
+  .band__sub{font-size:15px}
+
+  .sec__in--narrow{max-width:720px}
+  .doctor{padding:32px}
+  .doctor__photo{flex-basis:120px;width:120px;height:120px}
+  .doctor__full{font-size:24px}
+
+  .price{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+  .price__tile{padding:24px 14px}
+  .price__num{font-size:34px}
+
+  .flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+  .flow li{flex-direction:column;align-items:center;text-align:center;padding:24px 12px;gap:12px}
+  .flow__text{align-items:center;gap:6px}
+
+  .sec--notice{padding:64px 40px}
+  .notice{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:20px;align-items:start}
+  .confirm{padding:24px 28px}
+  .sec .confirm h2{font-size:17px}
+
+  .ft__in{padding:32px 40px}
+}
+@media (min-width:1280px){
+  .fv__in{padding:64px 120px 80px}
+  .fv__text{grid-template-columns:minmax(0,1fr) 520px;column-gap:72px;row-gap:26px}
+  .hdr__in{padding:0 120px}
+}
